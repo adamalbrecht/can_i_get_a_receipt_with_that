@@ -1,20 +1,34 @@
-$(function(){
-  var ui_obj = UI.init();
-  var data_obj = DATA.init();
-  data_obj.query({}, ui_obj.update_receipt, ui_obj.display_error_message);
+$(function(){ 
+  var controller = CONTROLLER.init();
 });
 
-var UI = new function() {
+var CONTROLLER = new function() {
+  this.init = function() {
+    var view = VIEW.init();
+    var model = MODEL.init();
+    model.query({}, function(data) {
+      var results = model.parse_query_results(data);
+      view.update_receipt(results);
+    });
+    return this;
+  };
+};
+
+var VIEW = new function() {
+  receipt_item_list = $("#line_items");
+
   this.init = function() {
     return this;
   };
 
-  this.update_receipt = function(data) {
-    alert("Success!");
+  this.update_receipt = function(items) {
+    $.each(items, function(i, item) {
+      insert_line_item(item.name, item.total_amount);
+    });
   };
 
-  this.insert_line_item = function(text, amount) {
-
+  var insert_line_item = function(text, amount) {
+    receipt_item_list.append("<li>" + text + ": " + amount + "</li>");
   };
 
   this.display_error_message = function(XMLHttpRequest, textStatus, errorThrown) {
@@ -22,7 +36,7 @@ var UI = new function() {
   };
 };
 
-var DATA = new function() {
+var MODEL = new function() {
   this.base_url = "http://www.whatwepayfor.com/api/";
 
   this.init = function() {
@@ -33,7 +47,7 @@ var DATA = new function() {
   this.filing_values = ["single", "married_filing_jointly", "married_filing_separately", "head_of_household"];
   this.group_by_values = ["agency", "bureau", "function", "subfunction"];
 
-  this.query = function(params, success_callback, error_callback) {
+  this.query = function(params, success_callback) {
     var params = $.extend({
         base_url: this.base_url,
         method: "getBudgetAggregate",
@@ -54,11 +68,20 @@ var DATA = new function() {
 
   };
 
-  this.parse_line_item_xml = function(item_node) {
+  this.parse_query_results = function(xml_data) {
+    var line_items = [];
+    $(xml_data).find("item").each(function () {
+      line_items.push(parse_line_item_xml($(this)));
+    });
+    return line_items;
+  };
+
+  var parse_line_item_xml = function(item_node) {
     var line_item = {};
-    line_item.name = $(item_node).find("dimensionName").text();
-    line_item.total_amount = $(item_node).find("amounti").text();
-    line_item.my_amount = $(item_node).find("mycosti").text();
+    line_item.name = $(item_node).attr("dimensionname");
+    line_item.total_amount = $(item_node).attr("amounti");
+    line_item.my_amount = $(item_node).attr("mycosti");
+    return line_item;
   };
 
   var generate_url = function(params) {

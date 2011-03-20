@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<response>
+  <item dimensionID="2839" dimensionName="Social security" spendingType="0" amounti="723504000" mycosti="177.83" />
+  <item dimensionID="2791" dimensionName="Department of Defense-Military" spendingType="0" amounti="696944000" mycosti="171.30" />
+  <item dimensionID="2832" dimensionName="Medicare" spendingType="0" amounti="462087000" mycosti="113.58" />
+  <item dimensionID="2857" dimensionName="Interest on Treasury debt securities (gross)" spendingType="0" amounti="425127000" mycosti="104.49" />
+  <item dimensionID="2829" dimensionName="Health care services" spendingType="0" amounti="349854000" mycosti="85.99" />
+  <item dimensionID="2835" dimensionName="Unemployment compensation" spendingType="0" amounti="193896000" mycosti="47.66" />
+  <item dimensionID="2838" dimensionName="Other income security" spendingType="0" amounti="180466000" mycosti="44.36" />
+  <item dimensionID="2834" dimensionName="Federal employee retirement and disability" spendingType="0" amounti="122708000" mycosti="30.16" />
+
+  <item dimensionID="2837" dimensionName="Food and nutrition assistance" spendingType="0" amounti="95151000" mycosti="23.39" />
+  <item dimensionID="2836" dimensionName="Housing assistance" spendingType="0" amounti="64107000" mycosti="15.76" />
+  <item dimensionID="2840" dimensionName="Income security for veterans" spendingType="0" amounti="62930000" mycosti="15.47" />
+  <item dimensionID="2816" dimensionName="Ground transportation" spendingType="0" amounti="61530000" mycosti="15.12" />
+  <item dimensionID="2864" dimensionName="Jobs bill" spendingType="0" amounti="50000000" mycosti="12.29" />
+  <item dimensionID="2842" dimensionName="Hospital and medical care for veterans" spendingType="0" amounti="47090000" mycosti="11.57" />
+  <item dimensionID="2823" dimensionName="Elementary, secondary, and vocational education" spendingType="0" amounti="41604000" mycosti="10.23" />
+  <item dimensionID="2830" dimensionName="Health research and training" spendingType="0" amounti="32146000" mycosti="7.90" />
+  <item dimensionID="2794" dimensionName="International development and humanitarian assistance" spendingType="0" amounti="31323000" mycosti="7.70" />
+
+  <item dimensionID="2845" dimensionName="Federal law enforcement activities" spendingType="0" amounti="28216000" mycosti="6.94" />
+  <item dimensionID="2817" dimensionName="Air transportation" spendingType="0" amounti="21647000" mycosti="5.32" />
+  <item dimensionID="2810" dimensionName="Farm income stabilization" spendingType="0" amounti="20268000" mycosti="4.98" />
+  <item dimensionID="2824" dimensionName="Higher education" spendingType="0" amounti="18517000" mycosti="4.55" />
+  <item dimensionID="2800" dimensionName="Space flight, research, and supporting activities" spendingType="0" amounti="18223000" mycosti="4.48" />
+  <item dimensionID="2792" dimensionName="Atomic energy defense activities" spendingType="0" amounti="17765000" mycosti="4.37" />
+  <item dimensionID="2828" dimensionName="Social services" spendingType="0" amounti="17653000" mycosti="4.34" />
+  <item dimensionID="2796" dimensionName="Conduct of foreign affairs" spendingType="0" amounti="16219000" mycosti="3.99" />
+  <item dimensionID="2846" dimensionName="Federal litigative and judicial activities" spendingType="0" amounti="13011000" mycosti="3.20" />
+
+  <item dimensionID="2799" dimensionName="General science and basic research" spendingType="0" amounti="12800000" mycosti="3.15" />
+  <item dimensionID="2798" dimensionName="International financial programs" spendingType="0" amounti="12757000" mycosti="3.14" />
+  <item dimensionID="2851" dimensionName="Central fiscal operations" spendingType="0" amounti="12532000" mycosti="3.08" />
+  <item dimensionID="2806" dimensionName="Conservation and land management" spendingType="0" amounti="12279000" mycosti="3.02" />
+  <item dimensionID="2822" dimensionName="Disaster relief and insurance" spendingType="0" amounti="10830000" mycosti="2.66" />
+  <item dimensionID="2808" dimensionName="Pollution control and abatement" spendingType="0" amounti="10386000" mycosti="2.55" />
+  <item dimensionID="2818" dimensionName="Water transportation" spendingType="0" amounti="10079000" mycosti="2.48" />
+  <item dimensionID="2826" dimensionName="Training and employment" spendingType="0" amounti="8474000" mycosti="2.08" />
+  <item dimensionID="2841" dimensionName="Veterans education, training, and rehabilitation" spendingType="0" amounti="8471000" mycosti="2.08" />
+
+  <item dimensionID="2833" dimensionName="General retirement and disability insurance (excluding social security)" spendingType="0" amounti="8231000" mycosti="2.02" />
+  <item dimensionID="2847" dimensionName="Federal correctional activities" spendingType="0" amounti="7624000" mycosti="1.87" />
+  <item dimensionID="2793" dimensionName="Defense-related activities" spendingType="0" amounti="7429000" mycosti="1.83" />
+  <item dimensionID="2801" dimensionName="Energy supply" spendingType="0" amounti="6867000" mycosti="1.69" />
+  <item dimensionID="2854" dimensionName="General purpose fiscal assistance" spendingType="0" amounti="6749000" mycosti="1.66" />
+  <item dimensionID="2809" dimensionName="Other natural resources" spendingType="0" amounti="6573000" mycosti="1.62" />
+  <item dimensionID="2805" dimensionName="Water resources" spendingType="0" amounti="6475000" mycosti="1.59" />
+  <item dimensionID="2820" dimensionName="Community development" spendingType="0" amounti="5993000" mycosti="1.47" />
+  <item dimensionID="2844" dimensionName="Other veterans benefits and services" spendingType="0" amounti="5953000" mycosti="1.46" />
+
+  <item dimensionID="2795" dimensionName="International security assistance" spendingType="0" amounti="5532000" mycosti="1.36" />
+  <item dimensionID="2862" dimensionName="Health reform" spendingType="0" amounti="5500000" mycosti="1.35" />
+  <item dimensionID="2811" dimensionName="Agricultural research and services" spendingType="0" amounti="5151000" mycosti="1.27" />
+  <item dimensionID="2855" dimensionName="Other general government" spendingType="0" amounti="5078000" mycosti="1.25" />
+  <item dimensionID="2865" dimensionName="Future Disaster Costs" spendingType="0" amounti="5000000" mycosti="1.23" />
+  <item dimensionID="2848" dimensionName="Criminal justice assistance" spendingType="0" amounti="4611000" mycosti="1.13" />
+  <item dimensionID="2831" dimensionName="Consumer and occupational health and safety" spendingType="0" amounti="4437000" mycosti="1.09" />
+  <item dimensionID="2849" dimensionName="Legislative functions" spendingType="0" amounti="4206000" mycosti="1.03" />
+  <item dimensionID="2825" dimensionName="Research and general education aids" spendingType="0" amounti="3813000" mycosti="0.94" />
+
+  <item dimensionID="2807" dimensionName="Recreational resources" spendingType="0" amounti="3807000" mycosti="0.94" />
+  <item dimensionID="2821" dimensionName="Area and regional development" spendingType="0" amounti="3061000" mycosti="0.75" />
+  <item dimensionID="2827" dimensionName="Other labor services" spendingType="0" amounti="1859000" mycosti="0.46" />
+  <item dimensionID="2797" dimensionName="Foreign information and exchange activities" spendingType="0" amounti="1557000" mycosti="0.38" />
+  <item dimensionID="2802" dimensionName="Energy conservation" spendingType="0" amounti="1131000" mycosti="0.28" />
+  <item dimensionID="2813" dimensionName="Postal service" spendingType="0" amounti="1038000" mycosti="0.26" />
+  <item dimensionID="2852" dimensionName="General property and records management" spendingType="0" amounti="1008000" mycosti="0.25" />
+  <item dimensionID="2850" dimensionName="Executive direction and management" spendingType="0" amounti="592000" mycosti="0.15" />
+  <item dimensionID="2843" dimensionName="Veterans housing" spendingType="0" amounti="558000" mycosti="0.14" />
+
+  <item dimensionID="2804" dimensionName="Energy information, policy, and regulation" spendingType="0" amounti="557000" mycosti="0.14" />
+  <item dimensionID="2819" dimensionName="Other transportation" spendingType="0" amounti="413000" mycosti="0.10" />
+  <item dimensionID="2803" dimensionName="Emergency energy preparedness" spendingType="0" amounti="255000" mycosti="0.06" />
+  <item dimensionID="2853" dimensionName="Central personnel management" spendingType="0" amounti="203000" mycosti="0.05" />
+  <item dimensionID="2870" dimensionName="Other undistributed offsetting receipts" spendingType="0" amounti="-391000" mycosti="-0.10" />
+  <item dimensionID="2861" dimensionName="Other investment and income" spendingType="0" amounti="-558000" mycosti="-0.14" />
+  <item dimensionID="2856" dimensionName="Deductions for offsetting receipts" spendingType="0" amounti="-1358000" mycosti="-0.33" />
+  <item dimensionID="2868" dimensionName="Rents and royalties on the Outer Continental Shelf" spendingType="0" amounti="-3535000" mycosti="-0.87" />
+  <item dimensionID="2814" dimensionName="Deposit insurance" spendingType="0" amounti="-8241000" mycosti="-2.03" />
+
+  <item dimensionID="2867" dimensionName="Employer share, employee retirement (off-budget)" spendingType="0" amounti="-14930000" mycosti="-3.67" />
+  <item dimensionID="2812" dimensionName="Mortgage credit" spendingType="0" amounti="-19074000" mycosti="-4.69" />
+  <item dimensionID="2860" dimensionName="Other interest" spendingType="0" amounti="-45398000" mycosti="-11.16" />
+  <item dimensionID="2866" dimensionName="Employer share, employee retirement (on-budget)" spendingType="0" amounti="-60875000" mycosti="-14.96" />
+  <item dimensionID="2858" dimensionName="Interest received by on-budget trust funds" spendingType="0" amounti="-72992000" mycosti="-17.94" />
+  <item dimensionID="2815" dimensionName="Other advancement of commerce" spendingType="0" amounti="-85522000" mycosti="-21.02" />
+  <item dimensionID="2859" dimensionName="Interest received by off-budget trust funds" spendingType="0" amounti="-118404000" mycosti="-29.10" />
+</response>
+
