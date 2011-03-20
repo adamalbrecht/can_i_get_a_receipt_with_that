@@ -15,25 +15,16 @@ var CONTROLLER = new function() {
 };
 
 var VIEW = new function() {
-  receipt_item_list = $("#line_items");
+  var receipt_item_list = $("#line_items");
 
   this.init = function() {
     return this;
   };
 
   this.update_receipt = function(items) {
-    $.each(items, function(i, item) {
-      insert_line_item(item.name, item.total_amount);
-    });
+    $("#line_item_template").tmpl(items).appendTo("#line_items");
   };
 
-  var insert_line_item = function(text, amount) {
-    receipt_item_list.append("<li>" + text + ": " + amount + "</li>");
-  };
-
-  this.display_error_message = function(XMLHttpRequest, textStatus, errorThrown) {
-    alert("ERROR: " + textStatus + " : " + errorThrown);
-  };
 };
 
 var MODEL = new function() {
@@ -78,7 +69,7 @@ var MODEL = new function() {
 
   var parse_line_item_xml = function(item_node) {
     var line_item = {};
-    line_item.name = $(item_node).attr("dimensionname");
+    line_item.category = $(item_node).attr("dimensionname");
     line_item.total_amount = $(item_node).attr("amounti");
     line_item.my_amount = $(item_node).attr("mycosti");
     return line_item;
