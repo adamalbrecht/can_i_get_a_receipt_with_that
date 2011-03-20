@@ -1,24 +1,32 @@
 $(function(){
-
+  var ui_obj = UI.init();
+  var data_obj = DATA.init();
+  data_obj.query({}, ui_obj.update_receipt, ui_obj.display_error_message);
 });
 
 var UI = new function() {
-  this.init = functions() {
-
+  this.init = function() {
+    return this;
   };
 
   this.update_receipt = function(data) {
-
+    alert("Success!");
   };
 
   this.insert_line_item = function(text, amount) {
 
   };
+
+  this.display_error_message = function(XMLHttpRequest, textStatus, errorThrown) {
+    alert("ERROR: " + textStatus + " : " + errorThrown);
+  };
 };
 
 var DATA = new function() {
+  this.base_url = "http://www.whatwepayfor.com/api/";
+
   this.init = function() {
-    this.base_url = "http://www.whatwepayfor.com/api/";
+    return this;
   };
 
   this.spending_type_values = ["all", "mandatory", "discretionary", "net_interest"];
@@ -27,12 +35,12 @@ var DATA = new function() {
 
   this.query = function(params, success_callback, error_callback) {
     var params = $.extend({
-        url: this.base_url,
+        base_url: this.base_url,
         method: "getBudgetAggregate",
         expanded: '',
         year: 2010,     // 1984 - 2015
         spending_type: 0,        // 0 - 3 // See values above
-        sortdir: false,
+        sortdir: 0, // 0 or 1
         income: 50000,
         filing: 0,      // 0 - 3 // See values above
         group_by: "subfunction",    // See values above
@@ -42,13 +50,15 @@ var DATA = new function() {
 
     var url = generate_url(params);
 
-    $.ajax({
-      type: "GET",
-      url: url,
-      dataType: "xml",
-      success: success_callback,
-      error: error_callback
-    });
+    Ajax.get(url, success_callback);
+
+  };
+
+  this.parse_line_item_xml = function(item_node) {
+    var line_item = {};
+    line_item.name = $(item_node).find("dimensionName").text();
+    line_item.total_amount = $(item_node).find("amounti").text();
+    line_item.my_amount = $(item_node).find("mycosti").text();
   };
 
   var generate_url = function(params) {
