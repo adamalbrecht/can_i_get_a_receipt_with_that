@@ -21,7 +21,12 @@
     <p class="field">
       <label>Year:</label>
       <select id="year">
-        <option>2010</option>
+        <option>2015</option>
+        <option>2014</option>
+        <option>2013</option>
+        <option>2012</option>
+        <option>2011</option>
+        <option selected="selected">2010</option>
         <option>2009</option>
         <option>2008</option>
         <option>2008</option>
@@ -60,6 +65,12 @@
       <input type="text" id="taxes" value="4785"/>
     </p>
     <p class="field">
+      <label>Detail Level:</label>
+      <br/>
+      <input type="radio" name="detail_level" value="function" checked="checked">Basic<br/>
+      <input type="radio" name="detail_level" value="subfunction">Detailed<br/>
+    </p>
+    <p class="field">
       <label>Show in...</label>
       <br/>
       <input type="radio" name="currency" value="dollars" checked="checked">Dollars ($)<br/>
@@ -77,8 +88,9 @@
 
   <div id="receipt">
     <script id="line_item_template" type="text/x-jquery-tmpl">
-      <li>${category}: ${total_amount}</li>
+      <li>${category}: ${my_amount}</li>
     </script>
+    <img src="img/ajax_loader.gif" id="ajax_loader" alt="loading..." />
     <ul id="line_items">
     </ul>
   </div>

@@ -1,52 +1,91 @@
 $(function(){ 
   var controller = CONTROLLER.init();
-  controller.update_receipt();
+  controller.update_receipt({});
 });
 
 var CONTROLLER = new function() {
+  var me = this;
   var view = null;
   var model = null;
-  this.init = function() {
-    view = VIEW.init();
+  me.init = function() {
+    view = VIEW.init(query_fields_changed);
     model = MODEL.init();
-    return this;
+    return me;
   };
 
-  this.update_receipt = function() {
-    model.query({}, function(data) {
+  me.update_receipt = function(params) {
+    view.show_loader_graphic();
+    model.query(params, function(data) {
       var results = model.parse_query_results(data);
       view.update_receipt(results);
+      view.hide_loader_graphic();
     });
+  };
+
+  var query_fields_changed = function() {
+    window.log("Query fields changed!");
+    params = view.get_search_params();
+    me.update_receipt(params);
   };
 };
 
 var VIEW = new function() {
-  var receipt_item_list = $("#line_items");
+  var me = this;
+  var on_field_change = null;
 
-  this.init = function() {
-    return this;
+  me.init = function(field_change_callback) {
+    on_field_change = field_change_callback;
+
+    watch_field_inputs();
+    return me;
   };
 
-  this.update_receipt = function(items) {
+  me.get_search_params = function() {
+    var params = {
+      year: $("#year").val(),
+      income: $("#income").val(),
+      group_by: $("input[name=detail_level]").val(),
+      showChange: false,
+      showExtra: false
+    }
+    return params;
+  };
+
+  me.show_loader_graphic = function() {
+    $("#line_items").hide();
+    $("#ajax_loader").show();
+  };
+  me.hide_loader_graphic = function() {
+    $("#line_items").show();
+    $("#ajax_loader").hide();
+  };
+
+  me.update_receipt = function(items) {
+    $("#line_items").empty();
     $("#line_item_template").tmpl(items).appendTo("#line_items");
+  };
+
+  var watch_field_inputs = function() {
+    $("#year, #income, #taxes, input[name=detail_level], input[name=currency]").change(on_field_change);
   };
 
 };
 
 var MODEL = new function() {
-  this.base_url = "http://www.whatwepayfor.com/api/";
+  var me = this;
+  me.base_url = "http://www.whatwepayfor.com/api/";
 
-  this.init = function() {
-    return this;
+  me.init = function() {
+    return me;
   };
 
-  this.spending_type_values = ["all", "mandatory", "discretionary", "net_interest"];
-  this.filing_values = ["single", "married_filing_jointly", "married_filing_separately", "head_of_household"];
-  this.group_by_values = ["agency", "bureau", "function", "subfunction"];
+  me.spending_type_values = ["all", "mandatory", "discretionary", "net_interest"];
+  me.filing_values = ["single", "married_filing_jointly", "married_filing_separately", "head_of_household"];
+  me.group_by_values = ["agency", "bureau", "function", "subfunction"];
 
-  this.query = function(params, success_callback) {
+  me.query = function(params, success_callback) {
     var params = $.extend({
-        base_url: this.base_url,
+        base_url: me.base_url,
         method: "getBudgetAggregate",
         expanded: '',
         year: 2010,     // 1984 - 2015
@@ -54,7 +93,7 @@ var MODEL = new function() {
         sortdir: 0, // 0 or 1
         income: 50000,
         filing: 0,      // 0 - 3 // See values above
-        group_by: "subfunction",    // See values above
+        group_by: "function",    // See values above
         showChange: false,
         showExtra: false
       },params);
@@ -65,7 +104,7 @@ var MODEL = new function() {
 
   };
 
-  this.parse_query_results = function(xml_data) {
+  me.parse_query_results = function(xml_data) {
     var line_items = [];
     $(xml_data).find("item").each(function () {
       line_items.push(parse_line_item_xml($(this)));
@@ -96,4 +135,3 @@ var MODEL = new function() {
     return url.join('');
   };
 };
-
