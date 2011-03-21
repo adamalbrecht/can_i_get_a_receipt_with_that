@@ -17,6 +17,63 @@
 </head>
 
 <body>
+  <div id="questions">
+    <p class="field">
+      <label>Year:</label>
+      <select id="year">
+        <option>2010</option>
+        <option>2009</option>
+        <option>2008</option>
+        <option>2008</option>
+        <option>2007</option>
+        <option>2006</option>
+        <option>2005</option>
+        <option>2004</option>
+        <option>2003</option>
+        <option>2002</option>
+        <option>2001</option>
+        <option>2000</option>
+        <option>1999</option>
+        <option>1998</option>
+        <option>1997</option>
+        <option>1996</option>
+        <option>1995</option>
+        <option>1994</option>
+        <option>1993</option>
+        <option>1992</option>
+        <option>1991</option>
+        <option>1990</option>
+        <option>1989</option>
+        <option>1988</option>
+        <option>1987</option>
+        <option>1986</option>
+        <option>1985</option>
+        <option>1984</option>
+      </select>
+    </p>
+    <p class="field">
+      <label>Income:</label>
+      <input type="text" id="income" value="50000"/>
+    </p>
+    <p class="field">
+      <label>Taxes Paid:</label>
+      <input type="text" id="taxes" value="4785"/>
+    </p>
+    <p class="field">
+      <label>Show in...</label>
+      <br/>
+      <input type="radio" name="currency" value="dollars" checked="checked">Dollars ($)<br/>
+      <input type="radio" name="currency" value="burritos">Chipotle Burritos<br/>
+      <input type="radio" name="currency" value="hambugers">McDonald's Big Macs<br/>
+      <input type="radio" name="currency" value="redbulls">Redbulls<br/>
+      <input type="radio" name="currency" value="coffee">Starbucks Cups of Coffee<br/>
+      <input type="radio" name="currency" value="cigarettes">Packs of Cigarettes<br/>
+      <input type="radio" name="currency" value="beer">6-packs of Bud Light<br/>
+      <input type="radio" name="currency" value="iphones">Apple iPhone 4's<br/>
+    </p>
+    <br/>
+    <br/>
+  </div>
 
   <div id="receipt">
     <script id="line_item_template" type="text/x-jquery-tmpl">

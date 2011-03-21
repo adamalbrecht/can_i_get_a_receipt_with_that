@@ -1,16 +1,22 @@
 $(function(){ 
   var controller = CONTROLLER.init();
+  controller.update_receipt();
 });
 
 var CONTROLLER = new function() {
+  var view = null;
+  var model = null;
   this.init = function() {
-    var view = VIEW.init();
-    var model = MODEL.init();
+    view = VIEW.init();
+    model = MODEL.init();
+    return this;
+  };
+
+  this.update_receipt = function() {
     model.query({}, function(data) {
       var results = model.parse_query_results(data);
       view.update_receipt(results);
     });
-    return this;
   };
 };
 

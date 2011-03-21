@@ -64,7 +64,7 @@ input, select { vertical-align: middle; }
  */
 
 body { font:13px/1.231 sans-serif; *font-size:small; } /* Hack retained to preserve specificity */
-select, input, textarea, button { font:99% sans-serif; }
+/* select, input, textarea, button { font:99% sans-serif; } */
 
 /* Normalize monospace sizing:
    en.wikipedia.org/wiki/MediaWiki_talk:Common.css/Archive_11#Teletype_style_fix_for_Chrome */
@@ -115,6 +115,8 @@ input[type="checkbox"] { vertical-align: bottom; }
 
 /* Hand cursor on clickable input elements */
 label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+
+label {font-weight:bold;}
 
 /* Webkit browsers add a 2px margin outside the chrome of form elements */
 button, input, select, textarea { margin: 0; }
@@ -259,3 +261,7 @@ a:hover { color: #036; }
   h2, h3{ page-break-after: avoid; }
 }
 
+
+.field {
+  margin: 8px 0;
+}
