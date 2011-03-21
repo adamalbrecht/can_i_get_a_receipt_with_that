@@ -3,6 +3,8 @@ $(function(){
   controller.update_receipt({});
 });
 
+
+
 var CONTROLLER = new function() {
   var me = this;
   var view = null;
@@ -15,9 +17,10 @@ var CONTROLLER = new function() {
 
   me.update_receipt = function(params) {
     view.show_loader_graphic();
-    model.query(params, function(data) {
-      var results = model.parse_query_results(data);
-      view.update_receipt(results);
+    model.query(params, function(data, new_params) {
+      var results = model.parse_query_results(data, new_params.currency);
+      var template = new_params.currency == "dollars" ? "dollars_template" : "barter_template"
+      view.update_receipt(results, template);
       view.hide_loader_graphic();
     });
   };
@@ -28,6 +31,9 @@ var CONTROLLER = new function() {
     me.update_receipt(params);
   };
 };
+
+
+
 
 var VIEW = new function() {
   var me = this;
@@ -44,9 +50,8 @@ var VIEW = new function() {
     var params = {
       year: $("#year").val(),
       income: $("#income").val(),
-      group_by: $("input[name=detail_level]").val(),
-      showChange: false,
-      showExtra: false
+      group_by: $("input[name=detail_level]:checked").val(),
+      currency: $("input[name=currency]:checked").val()
     }
     return params;
   };
@@ -60,16 +65,18 @@ var VIEW = new function() {
     $("#ajax_loader").hide();
   };
 
-  me.update_receipt = function(items) {
+  me.update_receipt = function(items, template_name) {
     $("#line_items").empty();
-    $("#line_item_template").tmpl(items).appendTo("#line_items");
+    $("#" + template_name).tmpl(items).appendTo("#line_items");
   };
 
   var watch_field_inputs = function() {
-    $("#year, #income, #taxes, input[name=detail_level], input[name=currency]").change(on_field_change);
+    $("#year, #income, input[name=detail_level], input[name=currency]").change(on_field_change);
   };
 
 };
+
+
 
 var MODEL = new function() {
   var me = this;
@@ -95,29 +102,40 @@ var MODEL = new function() {
         filing: 0,      // 0 - 3 // See values above
         group_by: "function",    // See values above
         showChange: false,
-        showExtra: false
+        showExtra: false,
+        currency: "dollars"
       },params);
 
     var url = generate_url(params);
 
-    Ajax.get(url, success_callback);
+    Ajax.get(url, function(data) {success_callback(data, params);});
 
   };
 
-  me.parse_query_results = function(xml_data) {
+  me.parse_query_results = function(xml_data, currency) {
     var line_items = [];
     $(xml_data).find("item").each(function () {
-      line_items.push(parse_line_item_xml($(this)));
+      line_items.push(parse_line_item_xml($(this), currency));
     });
     return line_items;
   };
 
-  var parse_line_item_xml = function(item_node) {
+  var parse_line_item_xml = function(item_node, currency) {
     var line_item = {};
+    line_item.currency = currency;
     line_item.category = $(item_node).attr("dimensionname");
     line_item.total_amount = $(item_node).attr("amounti");
     line_item.my_amount = $(item_node).attr("mycosti");
+    line_item.total_amount_str = UTILITY.convert_to_currency(line_item.total_amount);
+    line_item.my_amount_str = UTILITY.convert_to_currency(line_item.my_amount);
+    var cost_per_item = parseFloat($("input[name=currency][value=" + currency + "]").attr("data-cost"));
+    line_item.total_barter_amount = calculate_barter_amount(line_item.total_amount, cost_per_item);
+    line_item.my_barter_amount = calculate_barter_amount(line_item.my_amount, cost_per_item);
     return line_item;
+  };
+
+  var calculate_barter_amount = function(dollars, cost_per_item) {
+    return Math.round((dollars / cost_per_item)*100)/100;
   };
 
   var generate_url = function(params) {
@@ -133,5 +151,47 @@ var MODEL = new function() {
     url.push("&showChange=" + (params.showChange * 1));
     url.push("&showExtra=" + (params.showExtra * 1));
     return url.join('');
+  };
+};
+
+
+var UTILITY = new function() {
+  var me = this;
+
+  me.convert_to_currency = function(amount) {
+    var i = parseFloat(amount);
+    if(isNaN(i)) { i = 0.00; }
+    var minus = '';
+    if(i < 0) { minus = '-'; }
+    i = Math.abs(i);
+    i = parseInt((i + .005) * 100);
+    i = i / 100;
+    s = new String(i);
+    if(s.indexOf('.') < 0) { s += '.00'; }
+    if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
+    s = minus + s;
+
+    var delimiter = ","; // replace comma if desired
+    var a = s.split('.',2)
+    var d = a[1];
+    var i = parseInt(a[0]);
+    if(isNaN(i)) { return ''; }
+    var minus = '';
+    if(i < 0) { minus = '-'; }
+    i = Math.abs(i);
+    var n = new String(i);
+    var a = [];
+    while(n.length > 3)
+    {
+      var nn = n.substr(n.length-3);
+      a.unshift(nn);
+      n = n.substr(0,n.length-3);
+    }
+    if(n.length > 0) { a.unshift(n); }
+    n = a.join(delimiter);
+    if(d.length < 1) { s = n; }
+    else { s = n + '.' + d; }
+    s = minus + s;
+    return "$" + s;
   };
 };
