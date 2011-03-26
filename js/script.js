@@ -40,16 +40,21 @@ var VIEW = new function() {
   var on_field_change = null;
 
   me.init = function(field_change_callback) {
-    initialize_inputs();
+    initialize_hover_inputs();
     on_field_change = field_change_callback;
 
     watch_field_inputs();
     return me;
   };
 
-  var initialize_inputs = function() {
-    alert("hello!");
-
+  var initialize_hover_inputs = function() {
+    $(".hover_span").mouseover(function(){
+      $(this).hide();
+      $(this).next().show();
+    });
+    $(".hover_input").mouseout(function(){
+      $(this).hide().prev().show();
+    });
   };
 
   me.get_search_params = function() {

@@ -2,6 +2,24 @@ body {
   width:75%;
   margin:10px auto;
 }
+input {
+  width:none;
+}
+p {
+  line-height:30px;
+}
+p, p span, p input, p select {
+  font-family:arial;
+  font-size:14px;
+}
+p input[type='text'] {
+  line-height:20px;
+  border: 1px solid #999
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color:#FFF5D3;
+}
+
 #questions {
   border: solid 1px blue;
   padding: 5px;
@@ -16,4 +34,15 @@ body {
 }
 .field {
   margin: 8px 0;
+}
+.hover_span {
+  white-space: nowrap;
+}
+
+#income {
+  /* width: 55px; */
+}
+#questions p span, #questions p input, #questions p select {
+  font-style:italic;
+  font-weight:bold;
 }
