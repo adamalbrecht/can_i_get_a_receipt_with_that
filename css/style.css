@@ -40,7 +40,7 @@ p input[type='text'] {
 }
 
 #income {
-  /* width: 55px; */
+  width: 55px;
 }
 #questions p span, #questions p input, #questions p select {
   font-style:italic;

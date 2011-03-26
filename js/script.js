@@ -40,27 +40,40 @@ var VIEW = new function() {
   var on_field_change = null;
 
   me.init = function(field_change_callback) {
-    initialize_hover_inputs();
+    initialize_inputs();
     on_field_change = field_change_callback;
 
     watch_field_inputs();
     return me;
   };
 
-  var initialize_hover_inputs = function() {
+  var initialize_inputs = function() {
     $(".hover_span").mouseover(function(){
       $(this).hide();
-      $(this).next().show();
+      $(this).next(".hover_input").show();
     });
     $(".hover_input").mouseout(function(){
-      $(this).hide().prev().show();
+      $(this).hide().prev(".hover_span").show();
+    });
+
+    $("input[type='text'].hover_input").change(function() {
+      $(this).prev(".hover_span").html($(this).val());
+    });
+    $("select.hover_input").change(function() {
+      $(this).prev(".hover_span").html($(this).find(":selected").text());
+    });
+
+    $("#income").autoGrowInput({
+      comfortZone:5,
+      minWidth:10,
+      maxWidth:300
     });
   };
 
   me.get_search_params = function() {
     var params = {
       year: $("#year").val(),
-      income: $("#income").val(),
+      income: UTILITY.convert_currency_to_number($("#income").val()),
       group_by: $("input[name=detail_level]:checked").val(),
       currency: $("input[name=currency]:checked").val()
     }
@@ -126,7 +139,10 @@ var MODEL = new function() {
   me.parse_query_results = function(xml_data, currency) {
     var line_items = [];
     $(xml_data).find("item").each(function () {
-      line_items.push(parse_line_item_xml($(this), currency));
+      var new_line_item = parse_line_item_xml($(this), currency);
+      if (parseFloat(new_line_item.total_amount) >= 0) {
+        line_items.push(new_line_item);
+      }
     });
     return line_items;
   };
@@ -205,4 +221,8 @@ var UTILITY = new function() {
     s = minus + s;
     return "$" + s;
   };
+
+  me.convert_currency_to_number = function(currency) {
+    currency = currency.replace(/[$,]/, "");
+  }
 };
