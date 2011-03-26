@@ -40,10 +40,16 @@ var VIEW = new function() {
   var on_field_change = null;
 
   me.init = function(field_change_callback) {
+    initialize_inputs();
     on_field_change = field_change_callback;
 
     watch_field_inputs();
     return me;
+  };
+
+  var initialize_inputs = function() {
+    alert("hello!");
+
   };
 
   me.get_search_params = function() {
