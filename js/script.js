@@ -1,35 +1,12 @@
 $(function(){ 
 
-  var the_window = $(window),
-  $bg = $("#bg"),
-  aspect_ratio = $bg.width() / $bg.height(),
-  $receipt_container = $("#receipt_container");
 
-  function resize_bg() {
-    var rc_width = (.55 * the_window.width());
-    $bg.css("width", rc_width + "px");
-    $bg.css("height", the_window.height() + "px");
-    // if ((the_window.width() / the_window.height()) < aspect_ratio) {
-    //   $bg.removeClass().addClass('bgheight');
-    // } else {
-    //   $bg.removeClass().addClass('bgwidth');
-    // }
-  }
-
-  the_window.resize(function() {
-    resize_bg();
-  }).trigger("resize");
 
 
 
 
   var controller = CONTROLLER.init();
-  controller.update_receipt({});
 });
-var setup_background = function() {
-
-  };
-
 
 
 var CONTROLLER = new function() {
@@ -39,6 +16,7 @@ var CONTROLLER = new function() {
   me.init = function() {
     view = VIEW.init(query_fields_changed);
     model = MODEL.init();
+    me.update_receipt(view.get_search_params());
     return me;
   };
 
@@ -67,13 +45,30 @@ var VIEW = new function() {
   var on_field_change = null;
 
   me.init = function(field_change_callback) {
-    setup_background();
+    initialize_background();
     initialize_inputs();
     on_field_change = field_change_callback;
 
     watch_field_inputs();
     return me;
   };
+
+  var the_window = $(window),
+  $bg = $("#bg"),
+  aspect_ratio = $bg.width() / $bg.height(),
+  $receipt_container = $("#receipt_container");
+
+  var initialize_background = function() {
+    the_window.resize(function() {
+      resize_bg();
+    }).trigger("resize");
+  };
+
+  var resize_bg = function() {
+    var rc_width = (.55 * the_window.width());
+    $bg.css("width", rc_width + "px");
+    $bg.css("height", the_window.height() + "px");
+  }
 
   var initialize_inputs = function() {
     $("#income").autoGrowInput({
