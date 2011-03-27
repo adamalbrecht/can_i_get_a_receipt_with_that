@@ -1,7 +1,34 @@
 $(function(){ 
+
+  var the_window = $(window),
+  $bg = $("#bg"),
+  aspect_ratio = $bg.width() / $bg.height(),
+  $receipt_container = $("#receipt_container");
+
+  function resize_bg() {
+    var rc_width = (.55 * the_window.width());
+    $bg.css("width", rc_width + "px");
+    $bg.css("height", the_window.height() + "px");
+    // if ((the_window.width() / the_window.height()) < aspect_ratio) {
+    //   $bg.removeClass().addClass('bgheight');
+    // } else {
+    //   $bg.removeClass().addClass('bgwidth');
+    // }
+  }
+
+  the_window.resize(function() {
+    resize_bg();
+  }).trigger("resize");
+
+
+
+
   var controller = CONTROLLER.init();
   controller.update_receipt({});
 });
+var setup_background = function() {
+
+  };
 
 
 
@@ -40,6 +67,7 @@ var VIEW = new function() {
   var on_field_change = null;
 
   me.init = function(field_change_callback) {
+    setup_background();
     initialize_inputs();
     on_field_change = field_change_callback;
 
@@ -48,21 +76,6 @@ var VIEW = new function() {
   };
 
   var initialize_inputs = function() {
-    $(".hover_span").mouseover(function(){
-      $(this).hide();
-      $(this).next(".hover_input").show();
-    });
-    $(".hover_input").mouseout(function(){
-      $(this).hide().prev(".hover_span").show();
-    });
-
-    $("input[type='text'].hover_input").change(function() {
-      $(this).prev(".hover_span").html($(this).val());
-    });
-    $("select.hover_input").change(function() {
-      $(this).prev(".hover_span").html($(this).find(":selected").text());
-    });
-
     $("#income").autoGrowInput({
       comfortZone:5,
       minWidth:10,
