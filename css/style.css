@@ -1,60 +1,182 @@
-input {
-  width:none;
+*
+{
+    margin: 0;
+    padding: 0;
 }
-p {
-  line-height:30px;
+body 
+{
+    background-color: #a2bd96;
+    overflow: hidden;
 }
-p, p span, p input, p select {
-  font-family:arial;
-  font-size:14px;
+input
+{
+    width: none;
 }
-input[type='text'] {
-  line-height:20px;
-  border: 1px solid #999
-  border-collapse: collapse;
-  border-spacing: 0;
+#content
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    overflow: auto;
 }
-input[type='text']:hover {
-  background-color:#FFF5D3;
+p
+{
+    line-height: auto;
+}
+p, p span, p input, p select
+{
+    font-family: SiteFont, 'SiteFont' , 'VT323' ,Courier,Courier New,Verdana,Arial;
+    font-size: 14px;
+}
+p
+{
+    padding: 5%;
+}
+#background_orange
+{
+    background-color: #c96f00;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+.col1
+{
+    text-align: left;
+    width: 65%;
+}
+.col2, .col3
+{
+    text-align: right;
+    width: 33%;
+}
+.col2
+{
+    width: 2%;
+}
+.col4
+{
+    width: 35;
+}
+#corner
+{
+    cursor: pointer;
+    height: 99px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 99px;
+    z-index: 3;
+}
+input[type='text']
+{
+    line-height: 20px;
+    border: 1px solid #999 border-collapse: collapse;
+    border-spacing: 0;
+}
+input[type='text']:hover
+{
+    background-color: #FFF5D3;
+}
+.l_main, .l_main *
+{
+    color: #63715e;
+    letter-spacing: -1px;
+    text-shadow: 1px 1px 1px #FFF;
+}
+.l_main .edit
+{
+    color: #652d9c;
+    cursor: pointer;
+}
+#questions
+{
+    width: 55%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+#receipt_container
+{
+    right: 0;
+    top: 0;
+    float: right;
+    width: 45%;
+}
+#receipt
+{
+    -moz-box-shadow: 0 0 1px 1px #FFF;
+    -webkit-box-shadow: 0 0 1px 1px #FFF;
+    box-shadow: 0 0 1px 1px #FFF;
+    /* background-color: #FFF; */
+    background: url('../img/paper.jpg');
+    font-family: SiteFont, 'SiteFont' , 'VT323' ,Courier,Courier New,Verdana,Arial;
+    z-index: 5;
+    margin: 10% auto;
+    width: 400px;
+    text-align: center;
+    z-index: 0;
+}
+#receipt_inner
+{
+    width: 410px;
+    padding: 5% 0;
+    padding-bottom: 10%;
+    margin: 0 auto;
+    filter: alpha(opacity=70);
+    -khtml-opacity: 0.70;
+    -moz-opacity: 0.70;
+    opacity: 0.70;
+}
+#bg
+{
+    top: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+}
+.bgwidth
+{
+    width: 100%;
+}
+.bgheight
+{
+    height: 100%;
+}
+.field
+{
+    margin: 8px 0;
+}
+.hover_span
+{
+    white-space: nowrap;
 }
 
-#questions {
-  background: url('../img/bg_teal_long.jpg') repeat-x left top;
-  width:45%;
-  height:100%;
-  position:fixed;
-  top:0;
-  left:0;
+#income
+{
+    width: 55px;
 }
-#receipt_container {
-  right:0;
-  top:0;
-  float:right;
-  width:55%;
+#questions p input, #questions p select
+{
+    color: #652d9c;
+    font-style: italic;
+    font-weight: bold;
 }
-#receipt {
-  font-family: SiteFont,'SiteFont','VT323',Courier,Courier New,Verdana,Arial;
-  z-index:5;
-  border: solid 1px #000;
-  background-color:#fff;
-  width:400px;
-  margin: 20px auto;
-  padding:5px;
+#taxes_paid
+{
+    color: #555;
+    font-weight: bold !important;
 }
-#bg {top:0; right:0; position:fixed; z-index:-1;}
-.bgwidth {width:100%;}
-.bgheight {height:100%;}
-.field {
-  margin: 8px 0;
+#glow_bg
+{
+    background-color: Red;
+    position: absolute;
+    z-index: 1;
 }
-.hover_span {
-  white-space: nowrap;
-}
-
-#income {
-  width: 55px;
-}
-#questions p span, #questions p input, #questions p select {
-  font-style:italic;
-  font-weight:bold;
+#glow_bg img
+{
+    height: 100% !important;
+    width: 100% !important;
 }
