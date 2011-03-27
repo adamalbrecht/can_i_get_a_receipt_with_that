@@ -1,10 +1,4 @@
 $(function(){ 
-
-
-
-
-
-
   var controller = CONTROLLER.init();
 });
 
@@ -45,7 +39,7 @@ var VIEW = new function() {
   var on_field_change = null;
 
   me.init = function(field_change_callback) {
-    initialize_background();
+    // initialize_background();
     initialize_inputs();
     on_field_change = field_change_callback;
 
@@ -53,29 +47,12 @@ var VIEW = new function() {
     return me;
   };
 
-  var the_window = $(window),
-  $bg = $("#bg"),
-  aspect_ratio = $bg.width() / $bg.height(),
-  $receipt_container = $("#receipt_container");
-
-  var initialize_background = function() {
-    the_window.resize(function() {
-      resize_bg();
-    }).trigger("resize");
-  };
-
-  var resize_bg = function() {
-    var rc_width = (.55 * the_window.width());
-    $bg.css("width", rc_width + "px");
-    $bg.css("height", the_window.height() + "px");
-  }
-
   var initialize_inputs = function() {
-    $("#income").autoGrowInput({
-      comfortZone:5,
-      minWidth:10,
-      maxWidth:300
-    });
+    // $("#income").autoGrowInput({
+    //   comfortZone:5,
+    //   minWidth:10,
+    //   maxWidth:300
+    // });
   };
 
   me.get_search_params = function() {
@@ -231,6 +208,8 @@ var UTILITY = new function() {
   };
 
   me.convert_currency_to_number = function(currency) {
-    currency = currency.replace(/[$,]/, "");
+    currency = currency.replace(/[$, ]/g, "");
+    currency = currency.replace(/[kK]/g, "000");
+    return currency;
   }
 };
