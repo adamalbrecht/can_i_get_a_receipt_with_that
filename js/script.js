@@ -3,6 +3,7 @@ $(function(){
 });
 
 
+// The CONTROLLER is for typing together the data (MODEL) and the UI (VIEW)
 var CONTROLLER = new function() {
   var me = this;
   var view = null;
@@ -14,6 +15,7 @@ var CONTROLLER = new function() {
     return me;
   };
 
+  // Using the given paramaters, pull the data and update the receipt UI
   me.update_receipt = function(params) {
     view.show_loader_graphic();
     model.query(params, function(data, new_params) {
@@ -24,8 +26,8 @@ var CONTROLLER = new function() {
     });
   };
 
+  // When any of the inputs change, get the current inputs and update the receipt
   var query_fields_changed = function() {
-    window.log("Query fields changed!");
     params = view.get_search_params();
     me.update_receipt(params);
   };
@@ -38,6 +40,7 @@ var VIEW = new function() {
   var me = this;
   var on_field_change = null;
 
+  // Do any UI initialization work
   me.init = function(field_change_callback) {
     // initialize_background();
     initialize_inputs();
@@ -47,6 +50,7 @@ var VIEW = new function() {
     return me;
   };
 
+  // Initialize the various inputs UI
   var initialize_inputs = function() {
     // $("#income").autoGrowInput({
     //   comfortZone:5,
@@ -55,11 +59,12 @@ var VIEW = new function() {
     // });
   };
 
-
+  // Update the background so everything stays in scale
   var update_background = function() {
     background();
   };
 
+  // Return the current input paramaters (income, year, file as, etc...)
   me.get_search_params = function() {
     var params = {
       year: $("#year").val(),
@@ -70,21 +75,25 @@ var VIEW = new function() {
     return params;
   };
 
+  // Show the receipt loader graphic and hide the receipt content
   me.show_loader_graphic = function() {
     $("#line_items").hide();
     $("#ajax_loader").show();
   };
+  // Hide the receipt loader graphic and show the receipt content
   me.hide_loader_graphic = function() {
     $("#line_items").show();
     $("#ajax_loader").hide();
   };
 
+  // Update the receipt with the given line items and the selected template
   me.update_receipt = function(items, template_name) {
     $("#line_items").empty();
     $("#" + template_name).tmpl(items).appendTo("#line_items");
     update_background();
   };
 
+  // Watch for changes to any of the input parameters
   var watch_field_inputs = function() {
     $("#year, #income, input[name=detail_level], input[name=currency]").change(on_field_change);
   };
@@ -93,6 +102,7 @@ var VIEW = new function() {
 
 
 
+// THe MODEL is used for retrieving and processing data from the datasource
 var MODEL = new function() {
   var me = this;
   me.base_url = "http://www.whatwepayfor.com/api/";
@@ -101,10 +111,7 @@ var MODEL = new function() {
     return me;
   };
 
-  me.spending_type_values = ["all", "mandatory", "discretionary", "net_interest"];
-  me.filing_values = ["single", "married_filing_jointly", "married_filing_separately", "head_of_household"];
-  me.group_by_values = ["agency", "bureau", "function", "subfunction"];
-
+  // Query the datasource given these paramaters and call the proper method on success
   me.query = function(params, success_callback) {
     var params = $.extend({
         base_url: me.base_url,
@@ -127,6 +134,7 @@ var MODEL = new function() {
 
   };
 
+  // Parse the results of a query from XML to a javascript object
   me.parse_query_results = function(xml_data, currency) {
     var line_items = [];
     $(xml_data).find("item").each(function () {
@@ -138,6 +146,7 @@ var MODEL = new function() {
     return line_items;
   };
 
+  // Parse an individual line item (in xml) into a javascript object
   var parse_line_item_xml = function(item_node, currency) {
     var line_item = {};
     line_item.currency = currency;
@@ -152,10 +161,12 @@ var MODEL = new function() {
     return line_item;
   };
 
+  // Calculate the number of items that could be purchased with a given amount of money
   var calculate_barter_amount = function(dollars, cost_per_item) {
     return Math.round((dollars / cost_per_item)*100)/100;
   };
 
+  // Generate the URL to query
   var generate_url = function(params) {
     var url = [];
     url.push(params.base_url);
@@ -173,9 +184,11 @@ var MODEL = new function() {
 };
 
 
+// The UTILITY class holds all methods that don't fall into the 3 classes above
 var UTILITY = new function() {
   var me = this;
 
+  // Convert a number (which is a string) into a properly formatted currency string
   me.convert_to_currency = function(amount) {
     var i = parseFloat(amount);
     if(isNaN(i)) { i = 0.00; }
@@ -213,6 +226,7 @@ var UTILITY = new function() {
     return "$" + s;
   };
 
+  // Convert a currency string into a basic number (still a string)
   me.convert_currency_to_number = function(currency) {
     currency = currency.replace(/[$, ]/g, "");
     currency = currency.replace(/[kK]/g, "000");
