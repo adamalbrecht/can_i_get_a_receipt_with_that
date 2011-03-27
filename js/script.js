@@ -55,11 +55,16 @@ var VIEW = new function() {
     // });
   };
 
+
+  var update_background = function() {
+    background();
+  };
+
   me.get_search_params = function() {
     var params = {
       year: $("#year").val(),
       income: UTILITY.convert_currency_to_number($("#income").val()),
-      group_by: $("input[name=detail_level]:checked").val(),
+      group_by: ($("#detail_level").is(":checked") ? "subfunction" : "function"),
       currency: $("input[name=currency]:checked").val()
     }
     return params;
@@ -77,6 +82,7 @@ var VIEW = new function() {
   me.update_receipt = function(items, template_name) {
     $("#line_items").empty();
     $("#" + template_name).tmpl(items).appendTo("#line_items");
+    update_background();
   };
 
   var watch_field_inputs = function() {
