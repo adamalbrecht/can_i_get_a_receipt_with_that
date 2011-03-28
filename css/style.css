@@ -149,6 +149,11 @@ input[type='text']:hover
 #barcode {
   width:50%;
   margin:30px 0 10px;
+  filter: alpha(opacity=70);
+  -khtml-opacity: 0.70;
+  -moz-opacity: 0.70;
+  -webkit-opacity: 0.70;
+  opacity: 0.70;
 }
 #receipt_inner
 {
@@ -159,6 +164,7 @@ input[type='text']:hover
     filter: alpha(opacity=70);
     -khtml-opacity: 0.70;
     -moz-opacity: 0.70;
+    -webkit-opacity: 0.70;
     opacity: 0.70;
 }
 #ajax_loader {
