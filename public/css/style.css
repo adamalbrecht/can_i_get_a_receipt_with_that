@@ -62,7 +62,13 @@ input[type='text']:hover
     text-shadow: 1px 1px 1px #FFF;
     font-size: 200%;
     /* line-height:100%; */
-    margin-bottom:30px;
+    margin-bottom:5%;
+}
+
+#sentence .input_span {
+  color: #652d9c;
+  font-weight:bold;
+  font-size:110%;
 }
 #year {
   width:90px;
@@ -74,13 +80,11 @@ input[type='text']:hover
 #filed_as {
   width: 240px;
 }
-#sentence .input_span {
-  color: #652d9c;
-  font-weight:bold;
-  font-size:110%;
+
+#taxes_paid {
+  /* color:#666 !important; */
 }
 #perspective {
-  margin-top:5%;
   /* width:55%; */
   /* height:270px; */
   /* position:fixed; */

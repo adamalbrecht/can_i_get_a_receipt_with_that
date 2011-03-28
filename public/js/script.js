@@ -74,6 +74,40 @@ var VIEW = new function() {
             $(this).prev().attr({ "src": "img/corner01.png" });
         }
     });
+    
+    add_income_option(500, false)
+    add_income_option(1000, false);
+    add_income_option(2000, false);
+    add_income_option(3000, false);
+    add_income_option(4000, false);
+    for(var i=5000; i<=45000; i+=5000) {
+      add_income_option(i, false);
+    }
+    add_income_option(50000, true);
+    for (var i=60000; i<=100000; i+=10000) {
+      add_income_option(i, false);
+    }
+    for (var i=125000; i<=300000; i+=25000) {
+      add_income_option(i, false);
+    }
+    for (var i=350000; i<=500000; i+=50000) {
+      add_income_option(i, false);
+    }
+    for (var i=600000; i<=1000000; i+=100000) {
+      add_income_option(i, false);
+    }
+    for (var i=2000000; i<=10000000; i+=1000000) {
+      add_income_option(i, false);
+    }
+  };
+
+  var add_income_option = function(amount, selected) {
+    var option = "<option value='" + amount + "'";
+    if (selected == true) {
+      option = option + " selected='selected'";
+    }
+    option = option + ">" + UTILITY.convert_to_currency(amount).split('.')[0] + "</option>"
+    $("#income").append(option);
   };
 
   var setup_input_tooltip = function(span, content_selector) {
@@ -218,7 +252,7 @@ var VIEW = new function() {
 
   me.update_input_spans = function() {
     $("#year_span").text($("#year").val());
-    $("#income_span").text($("#income").val());
+    $("#income_span").text($("#income option:selected").text());
   };
 
   var scale_font_size = function() {
@@ -229,9 +263,9 @@ var VIEW = new function() {
     //For the left side, it is based on width unless the width is more than 65%
     //bigger than the height
     if ((height * 1.65) < width) {
-      $("#questions").css({"font-size":(height/30) + "px"});
+      $("#questions").css({"font-size":(height/28) + "px"});
     } else {
-      $("#questions").css({"font-size":(width/45) + "px"});
+      $("#questions").css({"font-size":(width/42) + "px"});
     }
   };
 
