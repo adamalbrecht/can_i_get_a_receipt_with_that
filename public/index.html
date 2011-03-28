@@ -13,13 +13,13 @@
     <meta name="author" content="">
     <title>Can I Get A Receipt With That?</title>
     <link rel="stylesheet" href="css/reset.css?v=2">
+    <link rel="stylesheet" href="css/jquery.qtip.min.css?v=2">
     <link rel="stylesheet" href="css/style.css?v=2">
-    <!-- <link rel="stylesheet" href="css/jquery.qtip.min.css?v=2"> -->
 </head>
 <body>
   <div id="year_popup" style="display:none">
     <label>Year:</label>
-    <select id="year" style="display:none">
+    <select id="year">
       <option>2015</option>
       <option>2014</option>
       <option>2013</option>
@@ -55,11 +55,15 @@
     </select>
   </div>
   <div id="income_popup" style="display:none">
-    <input type="text" id="income" value="$50,000" class="hover_input" style="display:none"/>
-    <select id="filed_as" class="hover_input" style="display:none">
-      <option value="0">Single</option>
+    <label>Income:</label>
+    <input type="text" id="income" value="$50,000"/>
+    <br/>
+    <br/>
+    <label>Filed As:</label>
+    <select id="filed_as">
+      <option selected="selected" value="0">Single</option>
       <option value="1">Married Filing Jointly</option>
-      <option selected="selected" value="2">Married Filing Separately</option>
+      <option value="2">Married Filing Separately</option>
       <option value="3">Head of Household</option>
     </select>
   </div>
@@ -67,8 +71,8 @@
           <div id="questions_inner">
             <p id="sentence">
               In
-              <span id="year_span" class="input_span">2010</span>, with an income of
-                <span id="income_span" class="input_span">$50,000</span>,
+              <span id="year_span" class="input_span tooltip_anchor">2010</span>, with an income of
+                <span id="income_span" class="input_span tooltip_anchor">$50,000</span>,
                 you paid an estimated <span id="taxes_paid" class="input_span">$10,013</span> in federal income taxes. Here is your receipt:
             </p>
             <div id="perspective" class="field" style="padding-bottom: 0 !important;">
@@ -80,7 +84,7 @@
                 Select one of the following:
               </div>
               <div id="brands">
-                  <div class="brand selected" id="brand1">
+                  <div class="brand" id="brand1">
                   </div>
                   <div class="brand" id="brand2">
                   </div>

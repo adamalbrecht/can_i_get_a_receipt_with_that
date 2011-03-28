@@ -77,14 +77,14 @@ input[type='text']:hover
     margin-bottom:30px;
 }
 #year {
-  width:135px;
+  width:90px;
 }
 #income
 {
-  width: 200px;
+  width:150px;
 }
 #filed_as {
-  width:450px;
+  width: 240px;
 }
 #sentence .input_span {
   color: #652d9c;
@@ -112,14 +112,6 @@ input[type='text']:hover
     -khtml-opacity: 0.40;
     -moz-opacity: 0.40;
     opacity: 0.40;
-}
-#brand1 
-{  
-    background-image: url(../img/1_00.png);
-}
-#brand1 
-{  
-    background-image: url../img/2_00.png);
 }
 #brand_radios {
   display:none;
@@ -280,3 +272,21 @@ p
     overflow: hidden;
 }
 
+
+
+/* QTIP TOOLTIP OVERRIDES */
+.ui-tooltip-content {
+  padding:10px;
+}
+.ui-tooltip label {
+  font-size: 180%;
+  font-weight:bold;
+  font-family: Verdana, Arial;
+  padding: 5px;
+}
+.ui-tooltip input, .ui-tooltip select {
+  font-size: 140%;
+  padding:5px;
+  font-family: Verdana;
+  color: #7323c6
+}

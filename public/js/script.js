@@ -60,15 +60,43 @@ var VIEW = new function() {
 
   // Initialize the various inputs UI
   var initialize_inputs = function() {
-    // $("#income").autoGrowInput({
-    //   comfortZone:5,
-    //   minWidth:10,
-    //   maxWidth:300
-    // });
+    setup_input_tooltip("#year_span", "#year_popup");
+    setup_input_tooltip("#income_span", "#income_popup");
   };
+
+  var setup_input_tooltip = function(span, content_selector) {
+    $(span).qtip({
+      content: $(content_selector),
+      hide: {
+        event: false,
+        inactive: 2000
+      },
+      position: {
+                  my: "center left",
+                  at: "center right"
+                },
+      style: {
+               tip: {
+                      corner: "center left"
+                    },
+               classes: "ui-tooltip-rounded ui-tooltip-shadow ui-tooltip-purple"
+             },
+      events: {
+                show: function(event, api) {
+                        $(".tooltip_anchor").each(function(){
+                          if ($(this).attr("id") != api.elements.target.attr("id")) {
+                            $(this).qtip("hide");
+                          }
+                        });
+                      }
+              }
+    });
+  }
 
   // Initialize the UI of the brand items (burittos, ipads, coffee, etc)
   var initialize_brands_ui = function() {
+    var selected_index = $("input[name=currency]:checked").index();
+    $(".brand:eq(" + selected_index + ")").addClass("selected");
     $(".brand").mouseover(function () {
         $(this).stop().animate({ opacity: .99 });
     });
@@ -140,6 +168,7 @@ var VIEW = new function() {
       year: $("#year").val(),
       income: UTILITY.convert_currency_to_number($("#income").val()),
       group_by: ($("#detail_level").is(":checked") ? "subfunction" : "function"),
+      filing: $("#filed_as").val(),
       currency: $("input[name=currency]:checked").val()
     }
     return params;
@@ -172,7 +201,7 @@ var VIEW = new function() {
 
   // Watch for changes to any of the input parameters
   var watch_field_inputs = function() {
-    $("#year, #income, input[name=detail_level], input[name=currency]").change(on_field_change);
+    $("#year, #income, input[name=detail_level], input[name=currency], #filed_as").change(on_field_change);
   };
 
 };
