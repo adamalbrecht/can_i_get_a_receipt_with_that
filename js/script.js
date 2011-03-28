@@ -109,7 +109,9 @@ var VIEW = new function() {
   // Set the proper brand radio box as checked
   var update_brands_radio_boxes = function(index) {
     $("input[name=currency]:checked").removeAttr("checked");
-    $("input[name=currency]:eq(" + index + ")").attr("checked", "checked").change();
+    var checked_brand = $("input[name=currency]:eq(" + index + ")");
+    checked_brand.attr("checked", "checked").change();
+    $("#display_currency").text(checked_brand.attr("data-currency-full"));
   }
 
   var the_window = $(window),
@@ -154,9 +156,6 @@ var VIEW = new function() {
   me.update_receipt = function(items, template_name) {
     $("#line_items").empty();
     $("#" + template_name).tmpl(items).appendTo("#line_items");
-    if (items.length > 0) {
-      $("#display_currency").text(items[0].currency);
-    }
   };
 
   // Watch for changes to any of the input parameters
