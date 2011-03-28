@@ -42,13 +42,20 @@ var VIEW = new function() {
 
   // Do any UI initialization work
   me.init = function(field_change_callback) {
-    // initialize_background();
+    initialize_background();
+    initialize_receipt_ui();
     initialize_inputs();
     initialize_brands_ui();
     on_field_change = field_change_callback;
 
     watch_field_inputs();
     return me;
+  };
+
+  var initialize_receipt_ui = function() {
+    var d = new Date();
+    $("#display_date").text((d.getMonth() + 1) + "-" + d.getDate() + "-" + d.getFullYear());
+    $("#display_time").text(" " + d.getHours() + ":" + d.getMinutes() + " " + d.getSeconds() + "-" + d.getMilliseconds() + "-" + d.getUTCMilliseconds());
   };
 
   // Initialize the various inputs UI
@@ -105,11 +112,22 @@ var VIEW = new function() {
     $("input[name=currency]:eq(" + index + ")").attr("checked", "checked").change();
   }
 
-  // Update the background so everything stays in scale
-  var update_background = function() {
-    background();
+  var the_window = $(window),
+  $bg = $("#bg"),
+  aspect_ratio = $bg.width() / $bg.height(),
+  $receipt_container = $("#receipt_container");
+
+  var initialize_background = function() {
+    the_window.resize(function() {
+      resize_bg();
+    }).trigger("resize");
   };
 
+  var resize_bg = function() {
+    var rc_width = (.45 * the_window.width());
+    $bg.css("width", rc_width + "px");
+    $bg.css("height", the_window.height() + "px");
+  }
   // Return the current input paramaters (income, year, file as, etc...)
   me.get_search_params = function() {
     var params = {
@@ -136,7 +154,9 @@ var VIEW = new function() {
   me.update_receipt = function(items, template_name) {
     $("#line_items").empty();
     $("#" + template_name).tmpl(items).appendTo("#line_items");
-    update_background();
+    if (items.length > 0) {
+      $("#display_currency").text(items[0].currency);
+    }
   };
 
   // Watch for changes to any of the input parameters

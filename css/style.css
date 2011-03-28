@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'VT323';
+  font-style: normal;
+  font-weight: normal;
+  src: local('VT323'), url('../fonts/VT323.woff') format('woff');
+}
+
+  
 *
 {
     margin: 0;
@@ -5,8 +13,6 @@
 }
 body 
 {
-    background-color: #a2bd96;
-    overflow: hidden;
 }
 input
 {
@@ -16,9 +22,92 @@ input
 {
     clear: both;
 }
+/* #content */
+/* { */
+/*     position: absolute; */
+/*     left: 0; */
+/*     top: 0; */
+/*     z-index: 2; */
+/*     overflow: auto; */
+/* } */
+p
+{
+    line-height: auto;
+}
+#questions_inner
+{
+    padding: 5%;
+}
+
+input[type='text']
+{
+    line-height: 20px;
+    border: 1px solid #999 border-collapse: collapse;
+    border-spacing: 0;
+}
+input[type='text']:hover
+{
+    background-color: #FFF5D3;
+}
+.l_main, .l_main *
+{
+}
+.l_main .edit
+{
+    color: #652d9c;
+    cursor: pointer;
+}
+#questions
+{
+    background: url('../img/bg_teal_long.jpg');
+    width: 55%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 26px;
+}
+#sentence {
+    font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
+    color: #63715e;
+    letter-spacing: -1px;
+    text-shadow: 1px 1px 1px #FFF;
+    font-size: 200%;
+    line-height:65px;
+    margin-bottom:20px;
+}
+#year {
+  width:135px;
+}
+#income
+{
+  width: 200px;
+}
+#filed_as {
+  width:450px;
+}
+#sentence input, #sentence select
+{
+    color: #652d9c;
+    font-style: italic;
+    font-weight: bold;
+    font-size:90%;
+    font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
+    height:55px;
+    line-height:55px;
+}
+#sentence .input_span {
+  color: #652d9c;
+  font-weight:bold;
+  font-size:110%;
+}
+#perspective_intro {
+    font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
+    color: #63715E;
+    font-size:100%;
+}
 #brands 
 {
-    margin: 0 5%;
     padding-top: 5px;
 }
 .brand 
@@ -42,35 +131,46 @@ input
 {  
     background-image: url../img/2_00.png);
 }
-#content
-{
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    overflow: auto;
+#brand_radios {
+  display:none;
 }
-p
+
+#receipt_container
 {
-    line-height: auto;
-}
-p, p span, p input, p select
-{
-    font-family: SiteFont, 'SiteFont' , 'VT323' ,Courier,Courier New,Verdana,Arial;
-    font-size: 14px;
-}
-p
-{
-    padding: 5%;
-}
-#background_orange
-{
-    background-color: #c96f00;
-    position: fixed;
     right: 0;
     top: 0;
+    float: right;
+    width: 45%;
+}
+#receipt
+{
+    -moz-box-shadow: 0 0 1px 1px #FFF;
+    -webkit-box-shadow: 0 0 1px 1px #FFF;
+    box-shadow: 0 0 1px 1px #FFF;
+    /* background-color: #FFF; */
+    background: url('../img/paper.jpg');
+    font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
+    z-index: 5;
+    margin: 10% auto;
+    width: 70%;
+    text-align: center;
     z-index: 0;
 }
+#receipt_inner
+{
+    width: 90%;
+    padding: 5% 0;
+    padding-bottom: 10%;
+    margin: 0 auto;
+    filter: alpha(opacity=70);
+    -khtml-opacity: 0.70;
+    -moz-opacity: 0.70;
+    opacity: 0.70;
+}
+#ajax_loader {
+  margin: 35px 0;
+}
+/* Receipt Table Columns */
 .col1
 {
     text-align: left;
@@ -87,7 +187,8 @@ p
 }
 .col4
 {
-    width: 35;
+    width: 35%;
+    text-align:right;
 }
 #corner
 {
@@ -103,68 +204,7 @@ p
 {
     cursor: pointer;
 }
-input[type='text']
-{
-    line-height: 20px;
-    border: 1px solid #999 border-collapse: collapse;
-    border-spacing: 0;
-}
-input[type='text']:hover
-{
-    background-color: #FFF5D3;
-}
-.l_main, .l_main *
-{
-    color: #63715e;
-    letter-spacing: -1px;
-    text-shadow: 1px 1px 1px #FFF;
-}
-.l_main .edit
-{
-    color: #652d9c;
-    cursor: pointer;
-}
-#questions
-{
-    width: 55%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-#receipt_container
-{
-    right: 0;
-    top: 0;
-    float: right;
-    overflow: hidden;
-    width: 45%;
-}
-#receipt
-{
-    -moz-box-shadow: 0 0 1px 1px #FFF;
-    -webkit-box-shadow: 0 0 1px 1px #FFF;
-    box-shadow: 0 0 1px 1px #FFF;
-    /* background-color: #FFF; */
-    background: url('../img/paper.jpg');
-    font-family: SiteFont, 'SiteFont' , 'VT323' ,Courier,Courier New,Verdana,Arial;
-    z-index: 5;
-    margin: 10% auto;
-    width: 400px;
-    text-align: center;
-    z-index: 0;
-}
-#receipt_inner
-{
-    width: 410px;
-    padding: 5% 0;
-    padding-bottom: 10%;
-    margin: 0 auto;
-    filter: alpha(opacity=70);
-    -khtml-opacity: 0.70;
-    -moz-opacity: 0.70;
-    opacity: 0.70;
-}
+
 #bg
 {
     top: 0;
@@ -184,26 +224,9 @@ input[type='text']:hover
 {
     /*margin: 8px 0;*/
 }
-.hover_span
-{
-    white-space: nowrap;
-}
 
-#income
-{
-    width: 55px;
-}
-#questions p input, #questions p select
-{
-    color: #652d9c;
-    font-style: italic;
-    font-weight: bold;
-}
-#taxes_paid
-{
-    color: #555;
-    font-weight: bold !important;
-}
+
+
 #glow_bg
 {
     background-color: Red;
@@ -237,7 +260,7 @@ input[type='text']:hover
     -moz-opacity: 0.98;
     opacity: 0.98;
     padding: 0 10px;
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 2px;
 }
@@ -246,3 +269,4 @@ p
 {
     overflow: hidden;
 }
+

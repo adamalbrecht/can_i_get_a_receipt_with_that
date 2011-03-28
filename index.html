@@ -12,111 +12,116 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="/favicon.ico">
-    <title></title>
+    <title>Can I Get A Receipt With That?</title>
     <link rel="stylesheet" href="css/reset.css?v=2">
     <link rel="stylesheet" href="css/style.css?v=2">
-    <link href="http://fonts.googleapis.com/css?family=VT323:regular" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="content">
         <div id="questions">
-            <div class="l_main">
-                <p class="big">
-                    In
-                    <select id="year" class="hover_input">
-                        <option>2015</option>
-                        <option>2014</option>
-                        <option>2013</option>
-                        <option>2012</option>
-                        <option>2011</option>
-                        <option selected="selected">2010</option>
-                        <option>2009</option>
-                        <option>2008</option>
-                        <option>2007</option>
-                        <option>2006</option>
-                        <option>2005</option>
-                        <option>2004</option>
-                        <option>2003</option>
-                        <option>2002</option>
-                        <option>2001</option>
-                        <option>2000</option>
-                        <option>1999</option>
-                        <option>1998</option>
-                        <option>1997</option>
-                        <option>1996</option>
-                        <option>1995</option>
-                        <option>1994</option>
-                        <option>1993</option>
-                        <option>1992</option>
-                        <option>1991</option>
-                        <option>1990</option>
-                        <option>1989</option>
-                        <option>1988</option>
-                        <option>1987</option>
-                        <option>1986</option>
-                        <option>1985</option>
-                        <option>1984</option>
-                    </select>, with an income of
-                    <input type="text" id="income" value="$50,000" class="hover_input" />
-                    filed as
-                    <select id="filed_as" class="hover_input">
-                        <option value="0">Single</option>
-                        <option value="1">Married Filing Jointly</option>
-                        <option selected="selected" value="2">Married Filing Separately</option>
-                        <option value="3">Head of Household</option>
-                      </select>, you paid an estimated <span id="taxes_paid">$10,013</span> in federal income tax. Here is your receipt: <b>TAKE A BREAK, KEVIN</b>
-                </p>
-                <div id="perspective" class="field" style="padding-bottom: 0 !important;">
-                  <span class="med">Put this into perspective </span><span class="small">
-                  <br />
-                  -----------------------------------------------------------------
-                  <br />
-                  Select one of the following:
-                  <div id="brands">
-                      <div class="brand selected" id="brand1">
-                      </div>
-                      <div class="brand" id="brand2">
-                      </div>
-                      <div class="brand" id="brand3">
-                      </div>
-                      <div class="brand" id="brand4">
-                      </div>
-                      <div class="brand" id="brand5">
-                      </div>
-                      <div class="brand" id="brand6">
-                      </div>
-                      <div class="brand" id="brand7">
-                      </div>
-                      <div class="brand" id="brand8">
-                      </div>
-                      <div class="brand" id="brand9">
-                      </div>
-                      <div class="clear">
-                      </div>
+          <div id="questions_inner">
+            <p id="sentence">
+              In
+              <select id="year" style="display:none">
+                <option>2015</option>
+                <option>2014</option>
+                <option>2013</option>
+                <option>2012</option>
+                <option>2011</option>
+                <option selected="selected">2010</option>
+                <option>2009</option>
+                <option>2008</option>
+                <option>2007</option>
+                <option>2006</option>
+                <option>2005</option>
+                <option>2004</option>
+                <option>2003</option>
+                <option>2002</option>
+                <option>2001</option>
+                <option>2000</option>
+                <option>1999</option>
+                <option>1998</option>
+                <option>1997</option>
+                <option>1996</option>
+                <option>1995</option>
+                <option>1994</option>
+                <option>1993</option>
+                <option>1992</option>
+                <option>1991</option>
+                <option>1990</option>
+                <option>1989</option>
+                <option>1988</option>
+                <option>1987</option>
+                <option>1986</option>
+                <option>1985</option>
+                <option>1984</option>
+              </select>
+              <span id="year_span" class="input_span">2010</span>
+                , with an income of
+                <input type="text" id="income" value="$50,000" class="hover_input" style="display:none"/>
+                <span id="income_span" class="input_span">$50,000</span>
+              <select id="filed_as" class="hover_input" style="display:none">
+                  <option value="0">Single</option>
+                  <option value="1">Married Filing Jointly</option>
+                  <option selected="selected" value="2">Married Filing Separately</option>
+                  <option value="3">Head of Household</option>
+                </select>
+               you paid an estimated <span id="taxes_paid" class="input_span">$10,013</span> in federal income tax. Here is your receipt:
+            </p>
+            <div id="perspective" class="field" style="padding-bottom: 0 !important;">
+              <div id="perspective_intro">
+                Put this into perspective
+                <br />
+                -------------------------------------
+                <br />
+                Select one of the following:
+              </div>
+              <div id="brands">
+                  <div class="brand selected" id="brand1">
                   </div>
-                  <div id="brand_radios">
-                    <input type="radio" name="currency" data-cost="1.00" value="dollars" checked="checked">Dollars ($)<br />
-                    <input type="radio" name="currency" data-cost="6.00" value="Burritos">Chipotle Burritos<br />
-                    <input type="radio" name="currency" data-cost="3.79" value="Big Macs">McDonald's Big Macs<br />
-                    <input type="radio" name="currency" data-cost="2.00" value="RedBulls">Redbulls<br />
-                    <input type="radio" name="currency" data-cost="1.69" value="Cups of Coffee">Starbucks Cups of Coffee<br />
-                    <input type="radio" name="currency" data-cost="4.50" value="Packs of Cigarettes">Packs of Cigarettes<br />
-                    <input type="radio" name="currency" data-cost="5.50" value="Beers">Bottles of Bud Light<br />
-                    <input type="radio" name="currency" data-cost="499.00" value="iPads">iPads<br />
+                  <div class="brand" id="brand2">
                   </div>
-                </div>
+                  <div class="brand" id="brand3">
+                  </div>
+                  <div class="brand" id="brand4">
+                  </div>
+                  <div class="brand" id="brand5">
+                  </div>
+                  <div class="brand" id="brand6">
+                  </div>
+                  <div class="brand" id="brand7">
+                  </div>
+                  <div class="brand" id="brand8">
+                  </div>
+                  <div class="brand" id="brand9">
+                  </div>
+                  <div class="clear">
+                  </div>
+              </div>
+              <div id="brand_radios">
+                <input type="radio" name="currency" data-cost="1.00" value="dollars" checked="checked">Dollars ($)<br />
+                <input type="radio" name="currency" data-cost="6.00" value="Burritos">Chipotle Burritos<br />
+                <input type="radio" name="currency" data-cost="3.79" value="Big Macs">McDonald's Big Macs<br />
+                <input type="radio" name="currency" data-cost="2.00" value="RedBulls">Redbulls<br />
+                <input type="radio" name="currency" data-cost="1.69" value="Cups of Coffee">Starbucks Cups of Coffee<br />
+                <input type="radio" name="currency" data-cost="4.50" value="Packs of Cigarettes">Packs of Cigarettes<br />
+                <input type="radio" name="currency" data-cost="5.50" value="Beers">Bottles of Bud Light<br />
+                <input type="radio" name="currency" data-cost="499.00" value="iPads">iPads<br />
+              </div>
             </div>
+          </div>
         </div>
         <div id="receipt_container">
+          <img src="img/bg_orange.jpg" id="bg" />
             <div id="receipt">
                 <div id="receipt_inner">
                     <span class="big" id="Testomg">Federal Income Tax Receipt</span>
                     <br />
-                    <span class="med">Additional information is listed here. Blah blah.</span>
+                    <div class="med">Shown in <span class="med" id="display_currency">Dollars ($)</span>
                     <br />
                     ::::::::::::::::::::::::::::::::::::::::::
                     <br />
-                    04-15-20XX <span id="time"></span>
+                    <span id="display_date"></span>
+                    <span id="display_time"></span>
                     <br />
                     ::::::::::::::::::::::::::::::::::::::::::
                     <br />
@@ -129,7 +134,6 @@
                            ${category}
                         </td>
                         <td class="col2">
-                            $
                         </td>
                         <td class="col3">
                         ${my_amount_str}
@@ -164,13 +168,6 @@
         </div>
         <div class="clear">
         </div>
-    </div>
-    <div id="background_orange">
-        <img src="img/bg_orange.jpg" height="100%" width="100%" />
-    </div>
-    <div id="background_teal">
-        <img src="img/bg_teal.jpg" height="100%" width="100%" />
-    </div>
     <div id="datasource">
         Created by Adam Albrecht &amp; Kevin Mack. Data Provided by WhatWePayFor.com.
     </div>
