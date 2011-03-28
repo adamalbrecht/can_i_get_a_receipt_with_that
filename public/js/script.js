@@ -253,6 +253,7 @@ var VIEW = new function() {
   me.update_input_spans = function() {
     $("#year_span").text($("#year").val());
     $("#income_span").text($("#income option:selected").text());
+    $(".tooltip_anchor").qtip("hide");
   };
 
   var scale_font_size = function() {
