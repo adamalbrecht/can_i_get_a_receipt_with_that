@@ -44,6 +44,7 @@ var VIEW = new function() {
   // Do any UI initialization work
   me.init = function(field_change_callback) {
     initialize_background();
+    scale_font_size();
     initialize_receipt_ui();
     initialize_inputs();
     initialize_brands_ui();
@@ -63,6 +64,13 @@ var VIEW = new function() {
   var initialize_inputs = function() {
     setup_input_tooltip("#year_span", "#year_popup");
     setup_input_tooltip("#income_span", "#income_popup");
+    $("#detail_level").change(function () {
+        if (this.checked) {
+            $(this).prev().attr({ "src": "img/corner00.png" });
+        } else {
+            $(this).prev().attr({ "src": "img/corner01.png" });
+        }
+    });
   };
 
   var setup_input_tooltip = function(span, content_selector) {
@@ -208,6 +216,22 @@ var VIEW = new function() {
   me.update_input_spans = function() {
     $("#year_span").text($("#year").val());
     $("#income_span").text($("#income").val());
+  };
+
+  var scale_font_size = function() {
+    $(window).resize(function(){
+      var width = $(window).width();
+      var height = $(window).height();
+      //For the right side, it is only based on width
+      $("#receipt_container").css({"font-size":(width/50) + "px"});
+      //For the left side, it is based on width unless the width is more than 75%
+      //bigger than the height
+      if ((height * 1.75) < width) {
+        $("#questions").css({"font-size":(height/30) + "px"});
+      } else {
+        $("#questions").css({"font-size":(width/50) + "px"});
+      }
+    });
   };
 
 };

@@ -14,6 +14,7 @@
 body 
 {
 }
+
 input
 {
     width: none;
@@ -22,18 +23,6 @@ input
 {
     clear: both;
 }
-/* #content */
-/* { */
-/*     position: absolute; */
-/*     left: 0; */
-/*     top: 0; */
-/*     z-index: 2; */
-/*     overflow: auto; */
-/* } */
-p
-{
-    line-height: auto;
-}
 #questions_inner
 {
     padding: 5%;
@@ -41,7 +30,6 @@ p
 
 input[type='text']
 {
-    line-height: 20px;
     border: 1px solid #999 border-collapse: collapse;
     border-spacing: 0;
 }
@@ -59,13 +47,13 @@ input[type='text']:hover
 }
 #questions
 {
+    font-size: 26px;
     background: url('../img/bg_teal_long.jpg');
     width: 55%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    font-size: 26px;
 }
 #sentence {
     font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
@@ -73,7 +61,7 @@ input[type='text']:hover
     letter-spacing: -1px;
     text-shadow: 1px 1px 1px #FFF;
     font-size: 200%;
-    line-height:65px;
+    /* line-height:100%; */
     margin-bottom:30px;
 }
 #year {
@@ -90,6 +78,14 @@ input[type='text']:hover
   color: #652d9c;
   font-weight:bold;
   font-size:110%;
+}
+#perspective {
+  /* width:55%; */
+  /* height:270px; */
+  /* position:fixed; */
+  /* bottom:0; */
+  /* left:0; */
+  /* padding:10px; */
 }
 #perspective_intro {
     font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
@@ -123,6 +119,7 @@ input[type='text']:hover
     top: 0;
     float: right;
     width: 45%;
+    font-size: 26px;
 }
 #receipt
 {
@@ -187,6 +184,15 @@ input[type='text']:hover
 {
     text-align: right;
     width: 38%;
+}
+#receipt .big {
+  font-size:115%;
+}
+#receipt .med {
+  font-size:100%;
+}
+#receipt .small {
+  font-size:75%;
 }
 #corner
 {
