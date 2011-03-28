@@ -28,6 +28,7 @@ var CONTROLLER = new function() {
 
   // When any of the inputs change, get the current inputs and update the receipt
   var query_fields_changed = function() {
+    view.update_input_spans();
     params = view.get_search_params();
     me.update_receipt(params);
   };
@@ -202,6 +203,11 @@ var VIEW = new function() {
   // Watch for changes to any of the input parameters
   var watch_field_inputs = function() {
     $("#year, #income, input[name=detail_level], input[name=currency], #filed_as").change(on_field_change);
+  };
+
+  me.update_input_spans = function() {
+    $("#year_span").text($("#year").val());
+    $("#income_span").text($("#income").val());
   };
 
 };
