@@ -44,6 +44,7 @@ var VIEW = new function() {
   me.init = function(field_change_callback) {
     // initialize_background();
     initialize_inputs();
+    initialize_brands_ui();
     on_field_change = field_change_callback;
 
     watch_field_inputs();
@@ -58,6 +59,51 @@ var VIEW = new function() {
     //   maxWidth:300
     // });
   };
+
+  // Initialize the UI of the brand items (burittos, ipads, coffee, etc)
+  var initialize_brands_ui = function() {
+    $(".brand").mouseover(function () {
+        $(this).stop().animate({ opacity: .99 });
+    });
+    $(".brand").mouseout(function () {
+        if ($(this).hasClass("selected") == false) {
+            $(this).stop().animate({ opacity: .40 });
+        }
+    });
+    $(".brand").each(function () {
+        var index = $(".brand").index(this) + 1;
+        if ($(this).hasClass("selected")) {
+          select_brand($(this));
+        } else {
+          deselect_brand($(this), false);
+        }
+    });
+    $(".brand").click(function () {
+      $(this).siblings(".brand.selected").each(function(){deselect_brand($(this), true);});
+      select_brand($(this));
+      update_brands_radio_boxes($(".brand").index(this));
+    });
+  };
+
+  var deselect_brand = function(brand, animate) {
+    $(brand).removeClass("selected");
+    var index = $(brand).index() + 1;
+    if (animate == true) {
+      $(brand).animate({ opacity: .40 });
+    }
+    $(brand).css({ "background-image": "url('img/" + index + "_00.png')" });
+  };
+  var select_brand = function(brand) {
+    $(brand).addClass("selected");
+    var index = $(brand).index() + 1;
+    $(brand).css({ "background-image": "url('img/" + index + "_01.png')" }).css({ opacity: .99 });
+  };
+
+  // Set the proper brand radio box as checked
+  var update_brands_radio_boxes = function(index) {
+    $("input[name=currency]:checked").removeAttr("checked");
+    $("input[name=currency]:eq(" + index + ")").attr("checked", "checked").change();
+  }
 
   // Update the background so everything stays in scale
   var update_background = function() {

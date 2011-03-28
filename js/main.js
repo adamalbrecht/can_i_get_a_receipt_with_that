@@ -14,7 +14,6 @@ $(document).ready(function () {
             $(this).prev().attr({ "src": "img/corner01.png" });
         }
     });
-    brands();
 });
 $(window).resize(function () {
     background();
@@ -64,37 +63,4 @@ function background() {
     }
     //$("#glow").height($("#receipt").height()).width($("#receipt").width());
     //$("#glow").css({ "right": ((OrgW - OrgW) / 2) });
-}
-
-function brands() {
-    $(".brand").mouseover(function () {
-        $(this).stop().animate({ opacity: .99 });
-    });
-    $(".brand").mouseout(function () {
-        if ($(this).hasClass("selected") == false) {
-            $(this).stop().animate({ opacity: .40 });
-        }
-    });
-    $(".brand").each(function () {
-        var Index = $(".brand").index(this) + 1;
-        if ($(this).hasClass("selected")) {
-            $(this).css({ "background-image": "url('img/" + Index + "_01.png')" }).css({ opacity: .99 });
-        } else {
-            $(this).css({ "background-image": "url('img/" + Index + "_00.png')" });
-        }
-    });
-    $(".brand").click(function () {
-        $(this).siblings(".brand").removeClass("selected");
-        $(this).addClass("selected");
-        $(this).siblings(".brand").stop().animate({ opacity: .40 });
-        $(".brand").each(function () {
-            var Index = $(".brand").index(this) + 1;
-            if ($(this).hasClass("selected")) {
-                $(this).css({ "background-image": "url('img/" + Index + "_01.png')" }).css({ opacity: .99 });
-            } else {
-                $(this).css({ "background-image": "url('img/" + Index + "_00.png')" });
-            }
-        });
-    });
-
 }
