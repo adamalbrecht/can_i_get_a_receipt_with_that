@@ -43,6 +43,9 @@ var VIEW = new function() {
 
   // Do any UI initialization work
   me.init = function(field_change_callback) {
+    $(window).resize(function(){
+      scale_font_size();
+    });
     initialize_background();
     scale_font_size();
     initialize_receipt_ui();
@@ -219,19 +222,17 @@ var VIEW = new function() {
   };
 
   var scale_font_size = function() {
-    $(window).resize(function(){
-      var width = $(window).width();
-      var height = $(window).height();
-      //For the right side, it is only based on width
-      $("#receipt_container").css({"font-size":(width/50) + "px"});
-      //For the left side, it is based on width unless the width is more than 75%
-      //bigger than the height
-      if ((height * 1.75) < width) {
-        $("#questions").css({"font-size":(height/30) + "px"});
-      } else {
-        $("#questions").css({"font-size":(width/50) + "px"});
-      }
-    });
+    var width = $(window).width();
+    var height = $(window).height();
+    //For the right side, it is only based on width (because it can scroll vertically)
+    $("#receipt_container").css({"font-size":(width/50) + "px"});
+    //For the left side, it is based on width unless the width is more than 65%
+    //bigger than the height
+    if ((height * 1.65) < width) {
+      $("#questions").css({"font-size":(height/30) + "px"});
+    } else {
+      $("#questions").css({"font-size":(width/45) + "px"});
+    }
   };
 
 };

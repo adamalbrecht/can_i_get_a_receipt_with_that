@@ -80,6 +80,7 @@ input[type='text']:hover
   font-size:110%;
 }
 #perspective {
+  margin-top:5%;
   /* width:55%; */
   /* height:270px; */
   /* position:fixed; */
@@ -102,8 +103,9 @@ input[type='text']:hover
     cursor: pointer;
     float: left; 
     height:58px; 
-    margin: 5px 5px 0 0;
-    width: 113px;
+    margin: 2% 1%;
+    /* width: 113px; */
+    width:22%;
     filter: alpha(opacity=40);
     -khtml-opacity: 0.40;
     -moz-opacity: 0.40;
@@ -256,13 +258,13 @@ input[type='text']:hover
 {
     background-color: #420083;
     color: #FFF;
-    font-size: 8px;
+    font-size: 9px;
     font-family: Verdana;
-    line-height: 15px;
-    filter: alpha(opacity=98);
-    -khtml-opacity: 0.98;
-    -moz-opacity: 0.98;
-    opacity: 0.98;
+    line-height: 17px;
+    filter: alpha(opacity=80);
+    -khtml-opacity: 0.80;
+    -moz-opacity: 0.80;
+    opacity: 0.80;
     padding: 0 10px;
     position: fixed;
     left: 0;
