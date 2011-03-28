@@ -99,6 +99,9 @@ var VIEW = new function() {
     for (var i=2000000; i<=10000000; i+=1000000) {
       add_income_option(i, false);
     }
+    for (var i=10000000; i<=100000000; i+=10000000) {
+      add_income_option(i, false);
+    }
   };
 
   var add_income_option = function(amount, selected) {
@@ -115,7 +118,7 @@ var VIEW = new function() {
       content: $(content_selector),
       hide: {
         event: false,
-        inactive: 3000
+        inactive: 5000
       },
       position: {
                   my: "center left",
