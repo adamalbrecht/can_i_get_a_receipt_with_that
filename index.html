@@ -55,17 +55,16 @@
                 <option>1985</option>
                 <option>1984</option>
               </select>
-              <span id="year_span" class="input_span">2010</span>
-                , with an income of
+              <span id="year_span" class="input_span">2010</span>, with an income of
                 <input type="text" id="income" value="$50,000" class="hover_input" style="display:none"/>
-                <span id="income_span" class="input_span">$50,000</span>
+                <span id="income_span" class="input_span">$50,000</span>,
               <select id="filed_as" class="hover_input" style="display:none">
                   <option value="0">Single</option>
                   <option value="1">Married Filing Jointly</option>
                   <option selected="selected" value="2">Married Filing Separately</option>
                   <option value="3">Head of Household</option>
                 </select>
-               you paid an estimated <span id="taxes_paid" class="input_span">$10,013</span> in federal income tax. Here is your receipt:
+                you paid an estimated <span id="taxes_paid" class="input_span">$10,013</span> in federal income taxes. Here is your receipt:
             </p>
             <div id="perspective" class="field" style="padding-bottom: 0 !important;">
               <div id="perspective_intro">
@@ -113,17 +112,18 @@
         <div id="receipt_container">
           <img src="img/bg_orange.jpg" id="bg" />
             <div id="receipt">
+              <img src="img/barcode.png" id="barcode"/>
                 <div id="receipt_inner">
                     <span class="big" id="Testomg">Federal Income Tax Receipt</span>
                     <br />
                     <div class="med">Shown in <span class="med" id="display_currency">Dollars ($)</span>
                     <br />
-                    ::::::::::::::::::::::::::::::::::::::::::
+                    ::::::::::::::::::::::::::::::::::::::::
                     <br />
                     <span id="display_date"></span>
                     <span id="display_time"></span>
                     <br />
-                    ::::::::::::::::::::::::::::::::::::::::::
+                    ::::::::::::::::::::::::::::::::::::::::
                     <br />
                     <script id="dollars_template" type="text/x-jquery-tmpl">
 
@@ -169,7 +169,7 @@
         <div class="clear">
         </div>
     <div id="datasource">
-        Created by Adam Albrecht &amp; Kevin Mack. Data Provided by WhatWePayFor.com.
+      Created by <a href="http://www.adamalbrecht.com" target="_blank">Adam Albrecht</a> &amp; <a href="http://www.nicetransition.com" target="_blank">Kevin Mack</a>. Data Provided by <a href="http://www.whatwepayfor.com" target="_blank">WhatWePayFor.com</a>.
     </div>
     <div id="corner">
         <label for="detail_level">

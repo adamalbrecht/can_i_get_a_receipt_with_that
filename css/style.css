@@ -74,7 +74,7 @@ input[type='text']:hover
     text-shadow: 1px 1px 1px #FFF;
     font-size: 200%;
     line-height:65px;
-    margin-bottom:20px;
+    margin-bottom:30px;
 }
 #year {
   width:135px;
@@ -86,16 +86,6 @@ input[type='text']:hover
 #filed_as {
   width:450px;
 }
-#sentence input, #sentence select
-{
-    color: #652d9c;
-    font-style: italic;
-    font-weight: bold;
-    font-size:90%;
-    font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
-    height:55px;
-    line-height:55px;
-}
 #sentence .input_span {
   color: #652d9c;
   font-weight:bold;
@@ -104,7 +94,7 @@ input[type='text']:hover
 #perspective_intro {
     font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
     color: #63715E;
-    font-size:100%;
+    font-size:125%;
 }
 #brands 
 {
@@ -156,10 +146,14 @@ input[type='text']:hover
     text-align: center;
     z-index: 0;
 }
+#barcode {
+  width:50%;
+  margin:30px 0 10px;
+}
 #receipt_inner
 {
     width: 90%;
-    padding: 5% 0;
+    padding: 0 0 5% 0;
     padding-bottom: 10%;
     margin: 0 auto;
     filter: alpha(opacity=70);
@@ -263,6 +257,10 @@ input[type='text']:hover
     position: fixed;
     left: 0;
     bottom: 2px;
+}
+
+#datasource a, #datasource a:visited, #datasource a:hover {
+  color:#fff;
 }
 
 p 
