@@ -92,6 +92,7 @@ var VIEW = new function() {
     });
   };
 
+  // Deselect a brand - make it more translucent
   var deselect_brand = function(brand, animate) {
     $(brand).removeClass("selected");
     var index = $(brand).index() + 1;
@@ -100,6 +101,7 @@ var VIEW = new function() {
     }
     $(brand).css({ "background-image": "url('img/" + index + "_00.png')" });
   };
+  // Select a brand - make it more opaque and stand out more
   var select_brand = function(brand) {
     $(brand).addClass("selected");
     var index = $(brand).index() + 1;
@@ -114,11 +116,13 @@ var VIEW = new function() {
     $("#display_currency").text(checked_brand.attr("data-currency-full"));
   }
 
+  //Variables for resizing the background image
   var the_window = $(window),
   $bg = $("#bg"),
   aspect_ratio = $bg.width() / $bg.height(),
   $receipt_container = $("#receipt_container");
 
+  //Setup the orange background so it is always the full height and width of the receipt zone
   var initialize_background = function() {
     the_window.resize(function() {
       resize_bg();
@@ -153,9 +157,17 @@ var VIEW = new function() {
   };
 
   // Update the receipt with the given line items and the selected template
-  me.update_receipt = function(items, template_name) {
+  me.update_receipt = function(results, template_name) {
     $("#line_items").empty();
-    $("#" + template_name).tmpl(items).appendTo("#line_items");
+    $("#" + template_name).tmpl(results.line_items).appendTo("#line_items");
+    var total_str = "";
+    if (results.currency == "dollars") {
+      total_str = UTILITY.convert_to_currency(results.my_total_dollars);
+    } else {
+      total_str = UTILITY.convert_to_2_decimal_places(results.my_total_currency) + " " + results.currency;
+    }
+    $("#total_template").tmpl([{total_str:total_str}]).appendTo("#line_items");
+    $("#taxes_paid").text(UTILITY.convert_to_currency(results.my_total_dollars));
   };
 
   // Watch for changes to any of the input parameters
@@ -201,14 +213,24 @@ var MODEL = new function() {
 
   // Parse the results of a query from XML to a javascript object
   me.parse_query_results = function(xml_data, currency) {
-    var line_items = [];
+    var data = {};
+    data.line_items = [];
+    data.currency = currency;
+    data.my_total_dollars = 0;
+    data.my_total_currency = 0;
+    data.total_dollars = 0;
+    data.total_currency = 0; 
     $(xml_data).find("item").each(function () {
       var new_line_item = parse_line_item_xml($(this), currency);
       if (parseFloat(new_line_item.total_amount) >= 0) {
-        line_items.push(new_line_item);
+        data.line_items.push(new_line_item);
+        data.my_total_dollars += parseFloat(new_line_item.my_dollar_amount);
+        data.total_dollars += parseFloat(new_line_item.total_dollar_amount);
+        data.my_total_currency += parseFloat(new_line_item.my_amount);
+        data.total_currency += parseFloat(new_line_item.total_amount);
       }
     });
-    return line_items;
+    return data;
   };
 
   // Parse an individual line item (in xml) into a javascript object
@@ -216,13 +238,18 @@ var MODEL = new function() {
     var line_item = {};
     line_item.currency = currency;
     line_item.category = $(item_node).attr("dimensionname");
-    line_item.total_amount = $(item_node).attr("amounti");
-    line_item.my_amount = $(item_node).attr("mycosti");
+    line_item.total_dollar_amount = $(item_node).attr("amounti");
+    line_item.my_dollar_amount = $(item_node).attr("mycosti");
+    if (currency == "dollars") {
+      line_item.total_amount = line_item.total_dollar_amount;
+      line_item.my_amount = line_item.my_dollar_amount;
+    } else {
+      var cost_per_item = parseFloat($("input[name=currency][value=" + currency + "]").attr("data-cost"));
+      line_item.total_amount = calculate_barter_amount(line_item.total_dollar_amount, cost_per_item);
+      line_item.my_amount = calculate_barter_amount(line_item.my_dollar_amount, cost_per_item);
+    }
     line_item.total_amount_str = UTILITY.convert_to_currency(line_item.total_amount);
-    line_item.my_amount_str = UTILITY.convert_to_currency(line_item.my_amount);
-    var cost_per_item = parseFloat($("input[name=currency][value=" + currency + "]").attr("data-cost"));
-    line_item.total_barter_amount = calculate_barter_amount(line_item.total_amount, cost_per_item);
-    line_item.my_barter_amount = calculate_barter_amount(line_item.my_amount, cost_per_item);
+    line_item.my_dollar_str = UTILITY.convert_to_currency(line_item.my_amount);
     return line_item;
   };
 
@@ -253,6 +280,9 @@ var MODEL = new function() {
 var UTILITY = new function() {
   var me = this;
 
+  me.convert_to_2_decimal_places = function(amount) {
+    return Math.round(amount * 100) / 100;
+  };
   // Convert a number (which is a string) into a properly formatted currency string
   me.convert_to_currency = function(amount) {
     var i = parseFloat(amount);

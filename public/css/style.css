@@ -170,6 +170,21 @@ input[type='text']:hover
 #ajax_loader {
   margin: 35px 0;
 }
+
+#receipt hr {
+  margin:8px 0;
+  filter: alpha(opacity=70);
+  -khtml-opacity: 0.70;
+  -moz-opacity: 0.70;
+  -webkit-opacity: 0.70;
+  opacity: 0.70;
+}
+#receipt tr.total {
+  font-weight:bold;
+}
+#receipt tr.total td {
+  padding-top:10px;
+}
 /* Receipt Table Columns */
 .col1
 {
@@ -190,6 +205,8 @@ input[type='text']:hover
     width: 35%;
     text-align:right;
 }
+.col5 { width:50%; text-align:left;}
+.col6 { width:50%; text-align:right;}
 #corner
 {
     height: 99px;

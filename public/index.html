@@ -11,59 +11,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="/favicon.ico">
     <title>Can I Get A Receipt With That?</title>
     <link rel="stylesheet" href="css/reset.css?v=2">
     <link rel="stylesheet" href="css/style.css?v=2">
+    <!-- <link rel="stylesheet" href="css/jquery.qtip.min.css?v=2"> -->
 </head>
 <body>
+  <div id="year_popup" style="display:none">
+    <label>Year:</label>
+    <select id="year" style="display:none">
+      <option>2015</option>
+      <option>2014</option>
+      <option>2013</option>
+      <option>2012</option>
+      <option>2011</option>
+      <option selected="selected">2010</option>
+      <option>2009</option>
+      <option>2008</option>
+      <option>2007</option>
+      <option>2006</option>
+      <option>2005</option>
+      <option>2004</option>
+      <option>2003</option>
+      <option>2002</option>
+      <option>2001</option>
+      <option>2000</option>
+      <option>1999</option>
+      <option>1998</option>
+      <option>1997</option>
+      <option>1996</option>
+      <option>1995</option>
+      <option>1994</option>
+      <option>1993</option>
+      <option>1992</option>
+      <option>1991</option>
+      <option>1990</option>
+      <option>1989</option>
+      <option>1988</option>
+      <option>1987</option>
+      <option>1986</option>
+      <option>1985</option>
+      <option>1984</option>
+    </select>
+  </div>
+  <div id="income_popup" style="display:none">
+    <input type="text" id="income" value="$50,000" class="hover_input" style="display:none"/>
+    <select id="filed_as" class="hover_input" style="display:none">
+      <option value="0">Single</option>
+      <option value="1">Married Filing Jointly</option>
+      <option selected="selected" value="2">Married Filing Separately</option>
+      <option value="3">Head of Household</option>
+    </select>
+  </div>
         <div id="questions">
           <div id="questions_inner">
             <p id="sentence">
               In
-              <select id="year" style="display:none">
-                <option>2015</option>
-                <option>2014</option>
-                <option>2013</option>
-                <option>2012</option>
-                <option>2011</option>
-                <option selected="selected">2010</option>
-                <option>2009</option>
-                <option>2008</option>
-                <option>2007</option>
-                <option>2006</option>
-                <option>2005</option>
-                <option>2004</option>
-                <option>2003</option>
-                <option>2002</option>
-                <option>2001</option>
-                <option>2000</option>
-                <option>1999</option>
-                <option>1998</option>
-                <option>1997</option>
-                <option>1996</option>
-                <option>1995</option>
-                <option>1994</option>
-                <option>1993</option>
-                <option>1992</option>
-                <option>1991</option>
-                <option>1990</option>
-                <option>1989</option>
-                <option>1988</option>
-                <option>1987</option>
-                <option>1986</option>
-                <option>1985</option>
-                <option>1984</option>
-              </select>
               <span id="year_span" class="input_span">2010</span>, with an income of
-                <input type="text" id="income" value="$50,000" class="hover_input" style="display:none"/>
                 <span id="income_span" class="input_span">$50,000</span>,
-              <select id="filed_as" class="hover_input" style="display:none">
-                  <option value="0">Single</option>
-                  <option value="1">Married Filing Jointly</option>
-                  <option selected="selected" value="2">Married Filing Separately</option>
-                  <option value="3">Head of Household</option>
-                </select>
                 you paid an estimated <span id="taxes_paid" class="input_span">$10,013</span> in federal income taxes. Here is your receipt:
             </p>
             <div id="perspective" class="field" style="padding-bottom: 0 !important;">
@@ -101,8 +106,8 @@
                 <input type="radio" name="currency" data-cost="6.00" data-currency-full="Chipotle Burritos" value="Burritos">
                 <input type="radio" name="currency" data-cost="3.79" data-currency-full="McDonald's Big Macs" value="Big Macs">
                 <input type="radio" name="currency" data-cost="2.00" data-currency-full="Redbulls" value="RedBulls">
-                <input type="radio" name="currency" data-cost="1.69" data-currency-full="Starbucks Cups of Coffee" value="Cups of Coffee">
-                <input type="radio" name="currency" data-cost="4.50" data-currency-full="Packs of Cigarettes" value="Packs of Cigarettes">
+                <input type="radio" name="currency" data-cost="1.69" data-currency-full="Starbucks Cups of Coffee" value="Cups">
+                <input type="radio" name="currency" data-cost="4.50" data-currency-full="Packs of Cigarettes" value="Packs">
                 <input type="radio" name="currency" data-cost="5.50" data-currency-full="Bottles of Bud Light" value="Beers">
                 <input type="radio" name="currency" data-cost="199.00" data-currency-full="iPod Touches" value="iPods">
               </div>
@@ -117,48 +122,27 @@
                     <span class="big" id="Testomg">Federal Income Tax Receipt</span>
                     <br />
                     <div class="med">Shown in <span class="med" id="display_currency">Dollars ($)</span>
-                    <br />
-                    ::::::::::::::::::::::::::::::::::::::::
-                    <br />
+                    <hr/>
                     <span id="display_date"></span>
                     <span id="display_time"></span>
-                    <br />
-                    ::::::::::::::::::::::::::::::::::::::::
-                    <br />
+                    <hr/>
                     <script id="dollars_template" type="text/x-jquery-tmpl">
-
-
-
-        <tr title="Total Amount: ${total_amount_str}">
-        <td class="col1">
-                           ${category}
-                        </td>
-                        <td class="col2">
-                        </td>
-                        <td class="col3">
-                        ${my_amount_str}
-                        </td>
-        </tr>
+                      <tr title="Total $ Spent: ${total_amount_str}">
+                        <td class="col1">${category}</td>
+                        <td class="col3">${my_dollar_str}</td>
+                      </tr>
                     </script>
                     <script id="barter_template" type="text/x-jquery-tmpl">
-
-
-
-
-        <tr title="Total Amount: ${total_barter_amount} ${currency}">
-        <td class="col1">
-                           ${category}
-                        </td>
-                        <td class="col4">
-                        ${my_barter_amount} 
-                     
-                        ${currency}
-                        <br />
-                        </td>
-
-
-
-        </tr>
+                      <tr title="Total Spent: ${total_barter_amount} ${currency}">
+                        <td class="col1">${category}</td>
+                        <td class="col3">${my_amount} ${currency}</td>
+                      </tr>
+                    </script>
+                    <script id="total_template" type="text/x-jquery-tmpl">
+                      <tr class="total">
+                        <td class="col5">TOTAL:</td>
+                        <td class="col6">${total_str}</td>
+                      </tr>
                     </script>
                     <img src="img/ajax_loader.gif" id="ajax_loader" alt="loading..." />
                     <table id="line_items">
