@@ -1,23 +1,3 @@
-@font-face {
-  font-family: 'VT323';
-  font-style: normal;
-  font-weight: normal;
-  src: local('VT323'), url('../fonts/VT323.woff') format('woff');
-}
-@font-face {
-  font-family: 'VT323-ttf';
-  font-style: normal;
-  font-weight: normal;
-  src: local('VT323'), url('../fonts/VT323.TTF') format('truetype');
-}
-@font-face {
-  font-family: 'VT323-eot';
-  font-style: normal;
-  font-weight: normal;
-  src: local('VT323'), url('../fonts/VT323.eot');
-}
-
-  
 *
 {
     margin: 0;
@@ -25,7 +5,7 @@
 }
 body 
 {
-    font-family: 'VT323', 'VT323-eot','VT323-ttf', Courier,Courier New,Verdana,Arial;
+    font-family: 'VT323', Courier,Courier New,Verdana,Arial;
 }
 
 input
