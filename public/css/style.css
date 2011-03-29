@@ -14,7 +14,7 @@
   font-family: 'VT323-eot';
   font-style: normal;
   font-weight: normal;
-  src: local('VT323'), url('../fonts/VT323.eot') format('opentype');
+  src: local('VT323'), url('../fonts/VT323.eot');
 }
 
   
