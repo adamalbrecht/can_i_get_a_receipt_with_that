@@ -118,7 +118,7 @@ var VIEW = new function() {
       content: $(content_selector),
       hide: {
         event: false,
-        inactive: 5000
+        inactive: 4000
       },
       position: {
                   my: "center left",

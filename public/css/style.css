@@ -4,6 +4,18 @@
   font-weight: normal;
   src: local('VT323'), url('../fonts/VT323.woff') format('woff');
 }
+@font-face {
+  font-family: 'VT323-ttf';
+  font-style: normal;
+  font-weight: normal;
+  src: local('VT323'), url('../fonts/VT323.TTF') format('truetype');
+}
+@font-face {
+  font-family: 'VT323-eot';
+  font-style: normal;
+  font-weight: normal;
+  src: local('VT323'), url('../fonts/VT323.eot') format('opentype');
+}
 
   
 *
@@ -13,6 +25,7 @@
 }
 body 
 {
+    font-family: 'VT323', 'VT323-eot','VT323-ttf', Courier,Courier New,Verdana,Arial;
 }
 
 input
@@ -56,7 +69,6 @@ input[type='text']:hover
     left: 0;
 }
 #sentence {
-    font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
     color: #63715e;
     letter-spacing: -1px;
     text-shadow: 1px 1px 1px #FFF;
@@ -70,6 +82,9 @@ input[type='text']:hover
   font-weight:bold;
   font-size:110%;
 }
+/* #sentence .tooltip_anchor { */
+/*   text-decoration:underline; */
+/* } */
 #year {
   width:90px;
 }
@@ -93,7 +108,6 @@ input[type='text']:hover
   /* padding:10px; */
 }
 #perspective_intro {
-    font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
     color: #63715E;
     font-size:125%;
 }
@@ -134,7 +148,6 @@ input[type='text']:hover
     box-shadow: 0 0 1px 1px #FFF;
     /* background-color: #FFF; */
     background: url('../img/paper.jpg');
-    font-family: 'VT323' ,Courier,Courier New,Verdana,Arial;
     z-index: 5;
     margin: 10% auto;
     width: 70%;
