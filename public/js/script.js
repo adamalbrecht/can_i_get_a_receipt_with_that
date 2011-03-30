@@ -5,7 +5,7 @@ $(function(){
 });
 
 function check_browser() {
-   if ($.browser.msie && $.browser.version.substr(0,1)<=7) {
+   if ($.browser.msie && $.browser.version.substr(0,1)<=8) {
     $.colorbox({
       width:"700px",
       height:"350px",
