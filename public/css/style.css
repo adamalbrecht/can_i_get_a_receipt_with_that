@@ -53,7 +53,7 @@ input[type='text']:hover
     letter-spacing: -1px;
     text-shadow: 1px 1px 1px #FFF;
     font-size: 200%;
-    /* line-height:100%; */
+    line-height:120%;
     margin-bottom:5%;
 }
 
@@ -62,9 +62,9 @@ input[type='text']:hover
   font-weight:bold;
   font-size:110%;
 }
-/* #sentence .tooltip_anchor { */
-/*   text-decoration:underline; */
-/* } */
+#sentence .tooltip_anchor {
+  border-bottom:solid 3px #652d9c;
+}
 #year {
   width:90px;
 }
@@ -257,15 +257,26 @@ input[type='text']:hover
     color: #FFF;
     font-size: 9px;
     font-family: Verdana;
-    line-height: 17px;
     filter: alpha(opacity=80);
     -khtml-opacity: 0.80;
     -moz-opacity: 0.80;
     opacity: 0.80;
-    padding: 0 10px;
+    padding: 3px 5px 3px;
     position: fixed;
     left: 0;
-    bottom: 2px;
+    bottom: 18px;
+}
+
+#created_by {
+  float:left;
+  margin:5px 10px 0;
+}
+#social_links {
+  float:right;
+  text-align:right;
+}
+
+.twitter-share-button {
 }
 
 #datasource a, #datasource a:visited, #datasource a:hover {
