@@ -1,6 +1,29 @@
 $(function(){ 
-  var controller = CONTROLLER.init();
+  if (check_browser() != false) {
+    var controller = CONTROLLER.init();
+  }
 });
+
+function check_browser() {
+   if ($.browser.msie && $.browser.version.substr(0,1)<=7) {
+    $.colorbox({
+      width:"700px",
+      height:"350px",
+      inline:true,
+      href:"#modern_browser_message",
+      open:true,
+      overlayClose:false,
+      onOpen:function(){
+        $("#modern_browser_message").show();
+      },
+      onClosed:function(){
+        $("#modern_browser_message").hide();
+      }
+    });
+    return false;
+  }
+  return true;
+}
 
 
 // The CONTROLLER is for typing together the data (MODEL) and the UI (VIEW)
