@@ -320,13 +320,11 @@ var MODEL = new function() {
     data.total_currency = 0; 
     $(xml_data).find("item").each(function () {
       var new_line_item = parse_line_item_xml($(this), currency);
-      if (parseFloat(new_line_item.total_amount) >= 0) {
-        data.line_items.push(new_line_item);
-        data.my_total_dollars += parseFloat(new_line_item.my_dollar_amount);
-        data.total_dollars += parseFloat(new_line_item.total_dollar_amount);
-        data.my_total_currency += parseFloat(new_line_item.my_amount);
-        data.total_currency += parseFloat(new_line_item.total_amount);
-      }
+      data.line_items.push(new_line_item);
+      data.my_total_dollars += parseFloat(new_line_item.my_dollar_amount);
+      data.total_dollars += parseFloat(new_line_item.total_dollar_amount);
+      data.my_total_currency += parseFloat(new_line_item.my_amount);
+      data.total_currency += parseFloat(new_line_item.total_amount);
     });
     return data;
   };
