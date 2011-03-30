@@ -7,7 +7,7 @@ $(function(){
 function check_browser() {
    if ($.browser.msie && $.browser.version.substr(0,1)<=8) {
     $.colorbox({
-      width:"700px",
+      width:"750px",
       height:"350px",
       inline:true,
       href:"#modern_browser_message",
